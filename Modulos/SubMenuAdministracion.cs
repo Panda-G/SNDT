@@ -40,13 +40,12 @@ namespace SNDT.Modulos
                             Menu.menuMostrarTitulo("Módulo de Administración > Dominio completo");
                             Console.WriteLine("\tIngresar nombre de Dominio Taxonomico:\n");
 
-                            string cadena = Console.ReadLine();
-                            string[] nDominio = cadena.Split('.');
-                            Cola<string> objCola = new Cola<string>();
-                            if (this.Validar(arbol, objCola, nDominio))
+                            //string cadena = Console.ReadLine();
+                            string[] nDominios = Console.ReadLine().Split('.');
+                            Cola<string> ObjCola = new Cola<string>();
+                            if (this.Validar(ObjCola, nDominios))
                             {
-                                int nivel = 0;
-                                this.arbolAdmin = insetarDominioArbol(arbol, objCola, nivel);
+                                this.arbolAdmin = insetarDominioArbol(arbol, ObjCola, 0);
 
                                 Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
                                 Thread.Sleep(800);
@@ -268,7 +267,7 @@ namespace SNDT.Modulos
             }
         }
         //Comprueba las categorias ingresadas
-        public bool Validar(ArbolGeneral arbol, Cola<string> cola, string[] entrada)
+        public bool Validar(Cola<string> cola, string[] entrada)
         {
             if (entrada.Count() == 7)
             {

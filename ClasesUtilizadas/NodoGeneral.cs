@@ -10,33 +10,39 @@ namespace SNDT.ClasesUtilizadas
     {
         private TipoDominioAbstracto dato;
         private ListaConArreglo listaHijos;
-
-
-        public NodoGeneral() { }
         
+        public NodoGeneral() { }
         public NodoGeneral(TipoDominioAbstracto enNombre)
         {
-            this.dato = enNombre;
+            this.Dato = enNombre;
             this.listaHijos = new ListaConArreglo();
         }
 
-
-        public TipoDominioAbstracto getDato()
+        public ListaConArreglo ListaHijos
         {
-            return this.dato;
+            get => listaHijos;
+            set => listaHijos = value;
         }
-        public void setHijos(ListaConArreglo hijos)
+        public TipoDominioAbstracto Dato
         {
-            this.listaHijos = hijos;
+            get => dato;
+            set => dato = value;
         }
-        public ListaConArreglo getHijos()
-        {
-            return this.listaHijos;
-        }
-        public void setDato(TipoDominioAbstracto dato)
-        {
-            this.dato = dato;
-        }
-
+        //public void setHijos(ListaConArreglo hijos)
+        //{
+        //    this.listaHijos = hijos;
+        //}
+        //public ListaConArreglo getHijos()
+        //{
+        //    return this.listaHijos;
+        //}
+        //public TipoDominioAbstracto getDato()
+        //{
+        //    return this.Dato;
+        //}
+        //public void setDato(TipoDominioAbstracto dato)
+        //{
+        //    this.Dato = dato;
+        //}
     }
 }

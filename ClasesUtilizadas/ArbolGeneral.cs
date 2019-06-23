@@ -30,28 +30,25 @@ namespace SNDT.ClasesUtilizadas
         {
             return raiz;
         }
-        public void setRaiz(NodoGeneral _raiz)
+        public void setRaiz(NodoGeneral raiz)
         {
-            this.raiz = _raiz;
+            this.raiz = raiz;
         }
         public TipoDominioAbstracto getDatoRaiz()
         {
-            return this.raiz.getDato();
+            return this.raiz.Dato;
         }
         public ListaConArreglo getHijos()
         {
-            ListaConArreglo temp = new ListaConArreglo();
-            temp = this.raiz.getHijos();
-            return temp;
+            return this.raiz.ListaHijos;
         }
         public void agregarHijo(ArbolGeneral hijo)
         {
-            this.raiz.getHijos().agregar(hijo);
-
+            this.raiz.ListaHijos.agregar(hijo);
         }
         public void eliminarHijo(ArbolGeneral hijo)
         {
-            this.raiz.getHijos().eliminar(hijo);
+            this.raiz.ListaHijos.eliminar(hijo);
         }
         public bool esVacio()
         {

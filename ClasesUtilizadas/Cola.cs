@@ -11,7 +11,6 @@ namespace SNDT.ClasesUtilizadas
         private List<T> datos = new List<T>();
         private int numeroElementos;
         private T anterior;
-
         public void encolar(T elem)
         {
             this.datos.Add(elem);

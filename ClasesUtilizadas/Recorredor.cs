@@ -12,13 +12,11 @@ namespace SNDT.ClasesUtilizadas
         private ListaConArreglo lista;
         private int actual;
 
-
         public Recorredor() { }
-        public Recorredor(ListaConArreglo lis)
+        public Recorredor(ListaConArreglo lista)
         {
-            this.lista = lis;
+            this.lista = lista;
         }
-
 
         public void comenzar()
         {
