@@ -16,10 +16,7 @@ namespace SNDT.ClasesUtilizadas
         public abstract bool esVacia();
         public abstract bool incluye(object elem);
 
-        public Recorredor recorredor()
-        {
-            return new Recorredor();
-        }
+        public abstract Recorredor Recorredor();
 
         public int getTamanio()
         {

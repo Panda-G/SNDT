@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace SNDT.ClasesUtilizadas
 {
-    public class TipoDominio:TipoDominioAbstracto
+    public class TipoDominio : TipoDominioAbstracto
     {
-        public TipoDominio() { }
         public TipoDominio(string n)
         {
             this.nombre = n;
         }
-        //public string Nombre
-        //{
-        //    get => nombre;
-        //    set => nombre = value;
-        //}
         public override void setNombre(string n)
         {
             this.nombre = n;

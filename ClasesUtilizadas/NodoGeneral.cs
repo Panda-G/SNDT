@@ -9,40 +9,26 @@ namespace SNDT.ClasesUtilizadas
     public class NodoGeneral
     {
         private TipoDominioAbstracto dato;
-        private ListaConArreglo listaHijos;
         
-        public NodoGeneral() { }
+        private ListaConArreglo listaHijos;
+
         public NodoGeneral(TipoDominioAbstracto enNombre)
         {
-            this.Dato = enNombre;
+            this.dato = enNombre;
             this.listaHijos = new ListaConArreglo();
         }
-
-        public ListaConArreglo ListaHijos
+        public NodoGeneral(Especie enNombre)
         {
-            get => listaHijos;
-            set => listaHijos = value;
+            this.dato = enNombre;
         }
+
         public TipoDominioAbstracto Dato
         {
-            get => dato;
-            set => dato = value;
+            get { return dato; }
         }
-        //public void setHijos(ListaConArreglo hijos)
-        //{
-        //    this.listaHijos = hijos;
-        //}
-        //public ListaConArreglo getHijos()
-        //{
-        //    return this.listaHijos;
-        //}
-        //public TipoDominioAbstracto getDato()
-        //{
-        //    return this.Dato;
-        //}
-        //public void setDato(TipoDominioAbstracto dato)
-        //{
-        //    this.Dato = dato;
-        //}
+        public ListaConArreglo ListaHijos
+        {
+            get { return listaHijos; }
+        }
     }
 }

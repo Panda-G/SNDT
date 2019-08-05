@@ -12,10 +12,10 @@ namespace SNDT.ClasesUtilizadas
         private ListaConArreglo lista;
         private int actual;
 
-        public Recorredor() { }
-        public Recorredor(ListaConArreglo lista)
+        public Recorredor(ArrayList inLista)
         {
-            this.lista = lista;
+            lista = new ListaConArreglo();
+            this.lista.Datos = inLista;
         }
 
         public void comenzar()
@@ -31,12 +31,11 @@ namespace SNDT.ClasesUtilizadas
         public void proximo()
         {
             this.actual += 1;
-            //this.lista.elemento(this.actual);
         }
 
         public bool fin()
         {
-            if (!(actual <= lista.getTamanio() - 1))
+            if (actual == lista.getTamanio())
             {
                 return true;
             }

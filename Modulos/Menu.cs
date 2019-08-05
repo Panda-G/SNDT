@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SNDT.ClasesUtilizadas;
+using System.Threading;
 
 namespace SNDT.Modulos
 {
     public class Menu
     {
-        private ArbolGeneral ArbolPrincipal = new ArbolGeneral();
+        private ArbolGeneral ArbolPrincipal;
 
         //"inicio" contiene la primer vista del programa, mostrando los modulos disponibles
         public void inicio(ArbolGeneral inArbolGeneral)
         {
+            this.ArbolPrincipal = inArbolGeneral;
             bool salirMenu = false;
             do
             {
@@ -73,7 +75,35 @@ namespace SNDT.Modulos
                 return 'n';
             }
 
-        } 
+        }
+        public static void estadoDeInsercion(bool estado)
+        {
+            if (estado)
+            {
+                Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
+                Thread.Sleep(800);
+            }
+            else
+            {
+                Console.Write("\n\nDetalle:\tHa ocurrido un error al agregar el nuevo Dominio.\n");
+                Thread.Sleep(800);
+            }
+        }
+        public static char repetirOperacion()
+        {
+            try
+            {
+                Console.Write("¿Desea respetir proceso? (s/n): ");
+                return Convert.ToChar(Console.ReadLine());
+            }
+            catch (Exception)
+            {
+                Console.Write("Opcion no valida, presione una tecla para salir...");
+                Console.ReadKey();
+                return 'n';
+            }
+
+        }
         #endregion
 
     }

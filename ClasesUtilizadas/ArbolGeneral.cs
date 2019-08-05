@@ -12,12 +12,14 @@ namespace SNDT.ClasesUtilizadas
         private NodoGeneral raiz;
         private int nivel = 0;
 
+        public int Nivel { get => nivel; set => nivel = value; }
+
         #region Constructores
         public ArbolGeneral(){ }
 
-        public ArbolGeneral(TipoDominio dato)
+        public ArbolGeneral(string inNombre)
         {
-            this.raiz = new NodoGeneral(dato);
+            this.raiz = new NodoGeneral(new TipoDominio(inNombre));
         }
         public ArbolGeneral(NodoGeneral nodo)
         {
@@ -26,14 +28,6 @@ namespace SNDT.ClasesUtilizadas
         #endregion
 
         #region Metodos
-        public NodoGeneral getRaiz()
-        {
-            return raiz;
-        }
-        public void setRaiz(NodoGeneral raiz)
-        {
-            this.raiz = raiz;
-        }
         public TipoDominioAbstracto getDatoRaiz()
         {
             return this.raiz.Dato;
@@ -63,7 +57,7 @@ namespace SNDT.ClasesUtilizadas
             Console.WriteLine(this.getDatoRaiz().getNombre());
             if (esHoja())
             {
-                if (this.nivel != 0)
+                if (this.Nivel != 0)
                 {
                     Especie esp = (Especie)getDatoRaiz();
                     Console.Write(" \tMetabolismo: " + esp.getDatoMEspecie() + "\n\tSexualidad: " + esp.getDatosREspecie() + "\n");
@@ -71,7 +65,7 @@ namespace SNDT.ClasesUtilizadas
             }
             else
             {
-                Recorredor rec = new Recorredor(getHijos());
+                Recorredor rec = getHijos().Recorredor();
                 rec.comenzar();
                 while (rec.fin() == false)
                 {
@@ -79,14 +73,6 @@ namespace SNDT.ClasesUtilizadas
                     rec.proximo();
                 }
             }
-        }
-        public int getnivel()
-        {
-            return this.nivel;
-        }
-        public void setnivel(int n)
-        {
-            this.nivel = n;
         }
         #endregion
 

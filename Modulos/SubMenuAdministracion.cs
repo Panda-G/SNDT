@@ -11,7 +11,7 @@ namespace SNDT.Modulos
 {
     public class SubMenuAdministracion
     {
-        ArbolGeneral arbolAdmin;
+        private ArbolGeneral arbolAdmin;
 
         public void initAdmin(ArbolGeneral arbol)
         {
@@ -40,7 +40,6 @@ namespace SNDT.Modulos
                             Menu.menuMostrarTitulo("Módulo de Administración > Dominio completo");
                             Console.WriteLine("\tIngresar nombre de Dominio Taxonomico:\n");
 
-                            //string cadena = Console.ReadLine();
                             string[] nDominios = Console.ReadLine().Split('.');
                             Cola<string> ObjCola = new Cola<string>();
                             if (this.Validar(ObjCola, nDominios))
@@ -134,10 +133,10 @@ namespace SNDT.Modulos
         {
             if (!cola.esVacia())
             {
-                arbol.setnivel(nivel);
+                arbol.Nivel= nivel;
                 if (existeCategoria(arbol, cola.tope()))
                 {
-                    Recorredor rec = new Recorredor(arbol.getHijos());
+                    Recorredor rec = arbol.getHijos().Recorredor();
                     rec.comenzar();
                     while (!rec.fin())
                     {
@@ -155,13 +154,12 @@ namespace SNDT.Modulos
                     {
                         string[] especie = metIngresarDatosEspecie(cola.tope());
                         ArbolGeneral arbolEspecie = new ArbolGeneral(new NodoGeneral(new Especie(cola.desencolar(), especie[0], especie[1])));
-                        arbolEspecie.setnivel(7);
                         arbol.agregarHijo(arbolEspecie);
                     }
                     else
                     {
-                        arbol.agregarHijo(new ArbolGeneral(new NodoGeneral(new TipoDominio(cola.desencolar()))));
-                        Recorredor rec = new Recorredor(arbol.getHijos());
+                        arbol.agregarHijo(new ArbolGeneral(cola.desencolar()));
+                        Recorredor rec = arbol.getHijos().Recorredor();
                         rec.comenzar();
                         while (!rec.fin())
                         {
@@ -251,7 +249,7 @@ namespace SNDT.Modulos
             }
             else
             {
-                Recorredor rec = new Recorredor(arbol.getHijos());
+                Recorredor rec = arbol.getHijos().Recorredor();
                 rec.comenzar();
                 while (rec.fin() == false)
                 {
@@ -292,7 +290,7 @@ namespace SNDT.Modulos
         //Retorna True, si la categoria ya existe, y False en caso contrario
         public static bool existeCategoria(ArbolGeneral arbol, string inCola)
         {
-            Recorredor rec = new Recorredor(arbol.getHijos());
+            Recorredor rec = arbol.getHijos().Recorredor();
             rec.comenzar();
             while (!rec.fin())
             {

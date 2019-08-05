@@ -120,13 +120,13 @@ namespace SNDT.Modulos
 
         public void proCategorias(ArbolGeneral inArbol, int profundidad)
         {
-            if (inArbol.esHoja() || inArbol.getnivel() == profundidad)
+            if (inArbol.esHoja() || inArbol.Nivel == profundidad)
             {
                 Console.WriteLine("> {0}", inArbol.getDatoRaiz().getNombre());
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = inArbol.getHijos().Recorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -154,7 +154,7 @@ namespace SNDT.Modulos
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = inArbol.getHijos().Recorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -168,7 +168,7 @@ namespace SNDT.Modulos
 
         public bool existeClase(ArbolGeneral inArbol, string inClase)
         {
-            if (inArbol.getnivel() == 3)
+            if (inArbol.Nivel == 3)
             {
                 if (inArbol.getDatoRaiz().getNombre() == inClase)
                 {
@@ -179,7 +179,7 @@ namespace SNDT.Modulos
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = inArbol.getHijos().Recorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -204,7 +204,8 @@ namespace SNDT.Modulos
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = inArbol.getHijos().Recorredor();
+                //Recorredor rec = new Recorredor(inArbol.getHijos());
                 rec.comenzar();
                 while (!rec.fin())
                 {
