@@ -5,76 +5,66 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 
-namespace SNDT.ClasesUtilizadas
+namespace SNDT
 {
     public class ArbolGeneral
     {
         private NodoGeneral raiz;
         private int nivel = 0;
+        public NodoGeneral Raiz { get => raiz; set => raiz = value; }
 
         #region Constructores
-        public ArbolGeneral(){ }
-
-        public ArbolGeneral(TipoDominio dato)
+        public ArbolGeneral(string enDato)
         {
-            this.raiz = new NodoGeneral(dato);
+            this.Raiz = new NodoGeneral(new TipoDominio(enDato));
         }
-        public ArbolGeneral(NodoGeneral nodo)
+        public ArbolGeneral (string enEspecie, string[] datoEspecie)
         {
-            this.raiz = nodo;
+            Especie miEspecie = new Especie(enEspecie, datoEspecie[0], datoEspecie[1]);
+            this.Raiz = new NodoGeneral(miEspecie);
         }
         #endregion
 
         #region Metodos
-        public NodoGeneral getRaiz()
-        {
-            return raiz;
-        }
-        public void setRaiz(NodoGeneral _raiz)
-        {
-            this.raiz = _raiz;
-        }
         public TipoDominioAbstracto getDatoRaiz()
         {
-            return this.raiz.getDato();
+            return this.Raiz.Dato;
         }
         public ListaConArreglo getHijos()
         {
-            ListaConArreglo temp = new ListaConArreglo();
-            temp = this.raiz.getHijos();
-            return temp;
+            return this.Raiz.ListaHijos;
         }
         public void agregarHijo(ArbolGeneral hijo)
         {
-            this.raiz.getHijos().agregar(hijo);
-
+            this.Raiz.ListaHijos.agregar(hijo, Raiz.ListaHijos.obtenerTamanio());
         }
+
         public void eliminarHijo(ArbolGeneral hijo)
         {
-            this.raiz.getHijos().eliminar(hijo);
+            this.Raiz.ListaHijos.eliminar(hijo);
         }
         public bool esVacio()
         {
-            return this.raiz == null;
+            return this.Raiz == null;
         }
         public bool esHoja()
         {
-            return this.raiz != null && this.getHijos().getTamanio() == 0;
+            return this.Raiz != null && this.getHijos().obtenerTamanio() == 0;
         }
         public void recorridoPreOrden()
         {
-            Console.WriteLine(this.getDatoRaiz().getNombre());
+            Console.WriteLine(getDatoRaiz().Nombre);
             if (esHoja())
             {
                 if (this.nivel != 0)
                 {
                     Especie esp = (Especie)getDatoRaiz();
-                    Console.Write(" \tMetabolismo: " + esp.getDatoMEspecie() + "\n\tSexualidad: " + esp.getDatosREspecie() + "\n");
+                    Console.Write(" \tMetabolismo: " + esp.Dato.Metabolismo + "\n\tReproduccion: " + esp.Dato.Reproduccion + "\n");
                 }
             }
             else
             {
-                Recorredor rec = new Recorredor(getHijos());
+                Recorredor rec = this.getHijos().getRecorredor();
                 rec.comenzar();
                 while (rec.fin() == false)
                 {

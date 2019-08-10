@@ -5,20 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SNDT.ClasesUtilizadas
+namespace SNDT
 {
     public class Recorredor
     {
         private ListaConArreglo lista;
         private int actual;
 
-
-        public Recorredor() { }
-        public Recorredor(ListaConArreglo lis)
+        public Recorredor(ArrayList enLista)
         {
-            this.lista = lis;
+            this.lista = new ListaConArreglo();
+            this.lista.Datos = enLista;
         }
-
 
         public void comenzar()
         {
@@ -33,12 +31,11 @@ namespace SNDT.ClasesUtilizadas
         public void proximo()
         {
             this.actual += 1;
-            //this.lista.elemento(this.actual);
         }
 
         public bool fin()
         {
-            if (!(actual <= lista.getTamanio() - 1))
+            if (!(actual <= lista.obtenerTamanio() - 1))
             {
                 return true;
             }

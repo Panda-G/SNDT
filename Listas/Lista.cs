@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SNDT.ClasesUtilizadas
+namespace SNDT
 {
     public abstract class Lista
     {
@@ -16,12 +16,9 @@ namespace SNDT.ClasesUtilizadas
         public abstract bool esVacia();
         public abstract bool incluye(object elem);
 
-        public Recorredor recorredor()
-        {
-            return new Recorredor();
-        }
+        public abstract Recorredor getRecorredor();
 
-        public int getTamanio()
+        public int obtenerTamanio()
         {
             return tamanio;
         }

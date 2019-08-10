@@ -41,18 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClasesUtilizadas\ArbolGeneral.cs" />
-    <Compile Include="ClasesUtilizadas\Cola.cs" />
-    <Compile Include="ClasesUtilizadas\Especie.cs" />
-    <Compile Include="ClasesUtilizadas\Lista.cs" />
-    <Compile Include="ClasesUtilizadas\ListaConArreglo.cs" />
-    <Compile Include="ClasesUtilizadas\NodoGeneral.cs" />
-    <Compile Include="ClasesUtilizadas\Recorredor.cs" />
-    <Compile Include="ClasesUtilizadas\TipoDominio.cs" />
-    <Compile Include="ClasesUtilizadas\TipoDominioAbstracto.cs" />
+    <Compile Include="Clases Generales\ArbolGeneral.cs" />
+    <Compile Include="Listas\Cola.cs" />
+    <Compile Include="Tipo de datos\Especie.cs" />
+    <Compile Include="Listas\Lista.cs" />
+    <Compile Include="Listas\ListaConArreglo.cs" />
+    <Compile Include="Clases Generales\NodoGeneral.cs" />
+    <Compile Include="Listas\Recorredor.cs" />
+    <Compile Include="Tipo de datos\TipoDominio.cs" />
+    <Compile Include="Tipo de datos\TipoDominioAbstracto.cs" />
     <Compile Include="Modulos\Menu.cs" />
-    <Compile Include="Modulos\SubMenuAdministracion.cs" />
-    <Compile Include="Modulos\SubMenuConsulta.cs" />
+    <Compile Include="Modulos\Administracion.cs" />
+    <Compile Include="Modulos\Consulta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

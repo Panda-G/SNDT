@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SNDT.ClasesUtilizadas;
 using System.Threading;
 using System.Collections;
 
-namespace SNDT.Modulos
+namespace SNDT
 {
-    public class SubMenuConsulta
+    public class Consulta
     {
         ArbolGeneral arbolConsulta;
 
-        public void initConsulta(ArbolGeneral arbol)
+        public void inicioConsulta(ArbolGeneral arbol)
         {
             this.arbolConsulta = arbol;
 
@@ -118,15 +117,15 @@ namespace SNDT.Modulos
 
         #region Metodos
 
-        public void proCategorias(ArbolGeneral inArbol, int profundidad)
+        public void proCategorias(ArbolGeneral enArbol, int profundidad)
         {
-            if (inArbol.esHoja() || inArbol.getnivel() == profundidad)
+            if (enArbol.esHoja() || enArbol.getnivel() == profundidad)
             {
-                Console.WriteLine("> {0}", inArbol.getDatoRaiz().getNombre());
+                Console.WriteLine("> {0}", enArbol.getDatoRaiz().Nombre);
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = enArbol.getHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -136,25 +135,25 @@ namespace SNDT.Modulos
             }
         }
 
-        public static bool existeEspecie(ArbolGeneral inArbol, string especieBusqueda)
+        public static bool existeEspecie(ArbolGeneral enArbol, string especieBusqueda)
         {
-            if (inArbol.esHoja())
+            if (enArbol.esHoja())
             {
-                if (inArbol.getDatoRaiz().getNombre() == especieBusqueda)
+                if (enArbol.getDatoRaiz().Nombre == especieBusqueda)
                 {
                     Console.WriteLine("Especie: {0} " +
                                       "\n\tMetabolismo: {1}" +
                                       "\n\tReproduccion: {2}",
                     especieBusqueda,
-                    ((Especie)inArbol.getDatoRaiz()).getDatoMEspecie(),
-                    ((Especie)inArbol.getDatoRaiz()).getDatosREspecie());
+                    ((Especie)enArbol.getDatoRaiz()).Dato.Metabolismo,
+                    ((Especie)enArbol.getDatoRaiz()).Dato.Reproduccion);
                     return true;
                 }
                 return false;
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = enArbol.getHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -166,24 +165,24 @@ namespace SNDT.Modulos
             }
         }
 
-        public bool existeClase(ArbolGeneral inArbol, string inClase)
+        public bool existeClase(ArbolGeneral enArbol, string enClase)
         {
-            if (inArbol.getnivel() == 3)
+            if (enArbol.getnivel() == 3)
             {
-                if (inArbol.getDatoRaiz().getNombre() == inClase)
+                if (enArbol.getDatoRaiz().Nombre == enClase)
                 {
-                    metBuscarEspecieClase(inArbol);
+                    metBuscarEspecieClase(enArbol);
                     return true;
                 }
                 return false;
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = enArbol.getHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
-                    if (existeClase((ArbolGeneral)rec.elemento(), inClase))
+                    if (existeClase((ArbolGeneral)rec.elemento(), enClase))
                         return true;
                     rec.proximo();
                 }
@@ -191,20 +190,20 @@ namespace SNDT.Modulos
             }
         }
 
-        public void metBuscarEspecieClase(ArbolGeneral inArbol)
+        public void metBuscarEspecieClase(ArbolGeneral enArbol)
         {
-            if (inArbol.esHoja())
+            if (enArbol.esHoja())
             {
                 Console.WriteLine("\n>Especie: ({0})" +
                                         "\n\t>Metabolismo: {1}" +
                                         "\n\t>Reproduccion: {2}",
-                  ((Especie)inArbol.getDatoRaiz()).getNombre(),
-                  ((Especie)inArbol.getDatoRaiz()).getDatoMEspecie(),
-                  ((Especie)inArbol.getDatoRaiz()).getDatosREspecie());
+                  ((Especie)enArbol.getDatoRaiz()).Nombre,
+                  ((Especie)enArbol.getDatoRaiz()).Dato.Metabolismo,
+                  ((Especie)enArbol.getDatoRaiz()).Dato.Reproduccion);
             }
             else
             {
-                Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = enArbol.getHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {

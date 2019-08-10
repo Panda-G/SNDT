@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using SNDT.ClasesUtilizadas;
 using System.Collections;
 
-namespace SNDT.Modulos
+namespace SNDT
 {
-    public class SubMenuAdministracion
+    public class Administracion
     {
         ArbolGeneral arbolAdmin;
-
-        public void initAdmin(ArbolGeneral arbol)
+        public void inicioAdmin(ArbolGeneral enArbol)
         {
-            this.arbolAdmin = arbol;
+            this.arbolAdmin = enArbol;
 
             bool salirMenuAdmin = false;
             do
@@ -40,13 +38,12 @@ namespace SNDT.Modulos
                             Menu.menuMostrarTitulo("Módulo de Administración > Dominio completo");
                             Console.WriteLine("\tIngresar nombre de Dominio Taxonomico:\n");
 
-                            string cadena = Console.ReadLine();
-                            string[] nDominio = cadena.Split('.');
+                            string[] nombreDominio = Console.ReadLine().Split('.');
                             Cola<string> objCola = new Cola<string>();
-                            if (this.Validar(arbol, objCola, nDominio))
+                            if (this.Validar(objCola, nombreDominio))
                             {
                                 int nivel = 0;
-                                this.arbolAdmin = insetarDominioArbol(arbol, objCola, nivel);
+                                this.arbolAdmin = insetarDominioArbol(enArbol, objCola, nivel);
 
                                 Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
                                 Thread.Sleep(800);
@@ -80,7 +77,7 @@ namespace SNDT.Modulos
                             if (cateValida == true)
                             {
                                 int nivel = 0;
-                                this.arbolAdmin = insetarDominioArbol(arbol, cola, nivel);
+                                this.arbolAdmin = insetarDominioArbol(enArbol, cola, nivel);
 
                                 Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
                                 Thread.Sleep(800);
@@ -95,16 +92,26 @@ namespace SNDT.Modulos
                         do
                         {
                             Menu.menuMostrarTitulo(" Eliminar 'Especie'");
-                            Console.Write("\nEspecie: "); string nombreEspecie = Console.ReadLine();
-                            if (this.arbolAdmin.getHijos().getTamanio() == 0)
+                            Console.Write("\nPara eliminar una Especie, debe ingresar su dominio taxonomico correspondiente:\n");
+
+                            string[] nDominio = Console.ReadLine().Split('.');
+                            Cola<string> cola = new Cola<string>();
+                            if (this.Validar(cola, nDominio))
                             {
-                                Console.WriteLine("El arbol no pose datos.");
+                                if (this.arbolAdmin.getHijos().obtenerTamanio() == 0)
+                                {
+                                    Console.WriteLine("El arbol no pose datos.");
+                                }
+                                else if (eliminarRecorrido(this.arbolAdmin, nDominio))
+                                {
+                                    Console.WriteLine("Especie '[{0}]' eliminada con exito", nDominio[6]);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Especie '{0}' no se encuentra en el Sistema.", nDominio[6]);
+                                }
                             }
-                            else if (!SubMenuConsulta.existeEspecie(this.arbolAdmin, nombreEspecie))
-                            {
-                                Console.WriteLine("Especie '{0}' no se encuentra en el Sistema.", nombreEspecie);
-                            }
-                            else eliminarRecorrido(this.arbolAdmin, nombreEspecie);
+
                             resp = Menu.obtenerRespusta();
                         } while (char.ToLower(resp) == 's');
                         break;
@@ -123,12 +130,12 @@ namespace SNDT.Modulos
                         Console.WriteLine("Opcion invalida");
                         Console.ReadKey();
                         break;
-                } 
+                }
                 #endregion
 
             } while (!salirMenuAdmin);
         }
-        
+
         #region Metodos
         //Se encargarga de insertar el dominio al arbol
         public ArbolGeneral insetarDominioArbol(ArbolGeneral arbol, Cola<string> cola, int nivel)
@@ -138,11 +145,11 @@ namespace SNDT.Modulos
                 arbol.setnivel(nivel);
                 if (existeCategoria(arbol, cola.tope()))
                 {
-                    Recorredor rec = new Recorredor(arbol.getHijos());
+                    Recorredor rec = arbol.getHijos().getRecorredor();
                     rec.comenzar();
                     while (!rec.fin())
                     {
-                        if (!cola.esVacia() && ((ArbolGeneral)rec.elemento()).getDatoRaiz().getNombre() == cola.tope())
+                        if (!cola.esVacia() && ((ArbolGeneral)rec.elemento()).getDatoRaiz().Nombre == cola.tope())
                         {
                             cola.desencolar();
                             insetarDominioArbol((ArbolGeneral)rec.elemento(), cola, ++nivel);
@@ -152,21 +159,21 @@ namespace SNDT.Modulos
                 }
                 else
                 {
-                    if (cola.getNumeroElementos() == 1)
+                    if (cola.obtenerCantidad() == 1)
                     {
                         string[] especie = metIngresarDatosEspecie(cola.tope());
-                        ArbolGeneral arbolEspecie = new ArbolGeneral(new NodoGeneral(new Especie(cola.desencolar(), especie[0], especie[1])));
+                        ArbolGeneral arbolEspecie = new ArbolGeneral(cola.desencolar(), especie);
                         arbolEspecie.setnivel(7);
                         arbol.agregarHijo(arbolEspecie);
                     }
                     else
                     {
-                        arbol.agregarHijo(new ArbolGeneral(new NodoGeneral(new TipoDominio(cola.desencolar()))));
-                        Recorredor rec = new Recorredor(arbol.getHijos());
+                        arbol.agregarHijo(new ArbolGeneral(cola.desencolar()));
+                        Recorredor rec = arbol.getHijos().getRecorredor();
                         rec.comenzar();
                         while (!rec.fin())
                         {
-                            if (cola.getAnterior() == ((ArbolGeneral)rec.elemento()).getDatoRaiz().getNombre())
+                            if (cola.obtenerAnterior() == ((ArbolGeneral)rec.elemento()).getDatoRaiz().Nombre)
                                 insetarDominioArbol((ArbolGeneral)rec.elemento(), cola, ++nivel);
                             rec.proximo();
                         }
@@ -239,20 +246,20 @@ namespace SNDT.Modulos
 
         }
         //Eliminar la especie, indicada como parametro, del arbol
-        public bool eliminarRecorrido(ArbolGeneral arbol, string inEspecie)
+        public bool eliminarRecorrido(ArbolGeneral arbol, string[] inEspecie)
         {
             if (arbol.esHoja())
             {
-                if (arbol.getDatoRaiz().getNombre() == inEspecie)
+                if (arbol.getDatoRaiz().Nombre == inEspecie[6])
                 {
-                    Console.WriteLine("Especie [{0}] encontrada.", inEspecie);
+                    Console.WriteLine("Especie [{0}] encontrada.", inEspecie[6]);
                     return true;
                 }
                 return false;
             }
             else
             {
-                Recorredor rec = new Recorredor(arbol.getHijos());
+                Recorredor rec = arbol.getHijos().getRecorredor();
                 rec.comenzar();
                 while (rec.fin() == false)
                 {
@@ -262,13 +269,13 @@ namespace SNDT.Modulos
                     }
                     rec.proximo();
                 }
-                if (arbol.getHijos().getTamanio() == 0)
+                if (arbol.getHijos().obtenerTamanio() == 0)
                     return true;
                 return false;
             }
         }
         //Comprueba las categorias ingresadas
-        public bool Validar(ArbolGeneral arbol, Cola<string> cola, string[] entrada)
+        public bool Validar(Cola<string> cola, string[] entrada)
         {
             if (entrada.Count() == 7)
             {
@@ -293,11 +300,11 @@ namespace SNDT.Modulos
         //Retorna True, si la categoria ya existe, y False en caso contrario
         public static bool existeCategoria(ArbolGeneral arbol, string inCola)
         {
-            Recorredor rec = new Recorredor(arbol.getHijos());
+            Recorredor rec = arbol.getHijos().getRecorredor();
             rec.comenzar();
             while (!rec.fin())
             {
-                if (((ArbolGeneral)rec.elemento()).getDatoRaiz().getNombre() == inCola)
+                if (((ArbolGeneral)rec.elemento()).getDatoRaiz().Nombre == inCola)
                 {
                     return true;
                 }

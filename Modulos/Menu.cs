@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SNDT.ClasesUtilizadas;
 
-namespace SNDT.Modulos
+namespace SNDT
 {
     public class Menu
     {
-        private ArbolGeneral ArbolPrincipal = new ArbolGeneral();
+        private ArbolGeneral arbolPrincipal;
 
         //"inicio" contiene la primer vista del programa, mostrando los modulos disponibles
         public void inicio(ArbolGeneral inArbolGeneral)
@@ -29,12 +28,12 @@ namespace SNDT.Modulos
                 switch (opcion)
                 {
                     case "1":
-                        SubMenuAdministracion administracion = new SubMenuAdministracion();
-                        administracion.initAdmin(inArbolGeneral);
+                        Administracion administracion = new Administracion();
+                        administracion.inicioAdmin(inArbolGeneral);
                         break;
                     case "2":
-                        SubMenuConsulta consultas = new SubMenuConsulta();
-                        consultas.initConsulta(inArbolGeneral);
+                        Consulta consultas = new Consulta();
+                        consultas.inicioConsulta(inArbolGeneral);
                         break;
                     case "3":
                         salirMenu = true;

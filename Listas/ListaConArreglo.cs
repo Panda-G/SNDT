@@ -5,60 +5,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SNDT.ClasesUtilizadas
+namespace SNDT
 {
     public class ListaConArreglo : Lista
     {
         private int inicial;
         private ArrayList datos;
 
+        public ArrayList Datos { get => datos; set => datos = value; }
+
         public ListaConArreglo()
         {
-            this.inicial = 0;
-            this.datos = new ArrayList();
+            inicial = 0;
+            Datos = new ArrayList();
         }
         public override object elemento(int pos)
         {
-            return this.datos[pos];
+            return Datos[pos];
         }
-        public void agregar(ArbolGeneral elem)
-        {
-            datos.Add(elem);
-            tamanio += 1;
-        }
-        public void agregar(int elem)
-        {
-            datos.Add(elem);
-            tamanio += 1;
-        }
+        
         public override void agregar(object elem, int pos)
         {
-            this.datos[pos] = elem;
+            if (pos == Datos.Count)
+            {
+                Datos.Add(elem);
+                tamanio += 1;
+            }
         }
+
         public override void eliminar(int pos)
         {
-            datos.RemoveAt(pos);
-            this.tamanio -= 1;
+            Datos.RemoveAt(pos);
+            tamanio -= 1;
         }
         public void eliminar(object elem)
         {
-            this.datos.Remove(elem);
+            this.Datos.Remove(elem);
             this.tamanio -= 1;
         }
         public override bool esVacia()
         {
-            if ((datos.Count) == 0)
+            if ((Datos.Count) == 0)
                 return true;
             return false;
         }
         public override bool incluye(object elem)
         {
-            foreach (var item in datos)
+            foreach (var item in Datos)
             {
                 if (item == elem)
                     return true;
             }
             return false;
+        }
+        public override Recorredor getRecorredor()
+        {
+            return new Recorredor(Datos);
         }
     }
 }

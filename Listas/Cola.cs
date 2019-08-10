@@ -4,29 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SNDT.ClasesUtilizadas
+namespace SNDT
 {
     public class Cola<T>
     {
         private List<T> datos = new List<T>();
-        private int numeroElementos;
+        private int cantidadElementos;
         private T anterior;
+
+        public int CantidadElementos { get => cantidadElementos; set => cantidadElementos = value; }
 
         public void encolar(T elem)
         {
             this.datos.Add(elem);
-            ++this.numeroElementos;
+            ++this.CantidadElementos;
         }
 
         public T desencolar()
         {
             T temp = anterior = this.datos[0];
             this.datos.RemoveAt(0);
-            --this.numeroElementos;
+            --this.CantidadElementos;
             return temp;
         }
 
-        public T getAnterior()
+        public T obtenerAnterior()
         {
             return anterior;
         }
@@ -38,12 +40,12 @@ namespace SNDT.ClasesUtilizadas
 
         public bool esVacia()
         {
-            return this.datos.Count == 0 && this.numeroElementos == 0;
+            return this.datos.Count == 0 && this.CantidadElementos == 0;
         }
 
-        public int getNumeroElementos()
+        public int obtenerCantidad()
         {
-            return this.numeroElementos;
+            return this.CantidadElementos;
         }
     }
 }
