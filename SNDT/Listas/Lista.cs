@@ -10,7 +10,7 @@ namespace SNDT
     {
         protected int tamanio { get; set; }
 
-        public abstract object elemento(int pos);
+        public abstract object obtenerElemento(int pos);
         public abstract void agregar(object elem, int pos);
         public abstract void eliminar(int pos);
         public abstract bool esVacia();

@@ -19,7 +19,7 @@ namespace SNDT
             inicial = 0;
             Datos = new ArrayList();
         }
-        public override object elemento(int pos)
+        public override object obtenerElemento(int pos)
         {
             return Datos[pos];
         }

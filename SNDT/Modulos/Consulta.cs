@@ -103,7 +103,7 @@ namespace SNDT
                             Console.ReadKey();
                             break;
 
-                    } 
+                    }
                     #endregion
 
                 } while (!salirMenuConsulta);
@@ -119,13 +119,13 @@ namespace SNDT
 
         public void proCategorias(ArbolGeneral enArbol, int profundidad)
         {
-            if (enArbol.esHoja() || enArbol.getnivel() == profundidad)
+            if (enArbol.esHoja() || enArbol.NivelNodo == profundidad)
             {
                 Console.WriteLine("> {0}", enArbol.getDatoRaiz().Nombre);
             }
             else
             {
-                Recorredor rec = enArbol.getHijos().getRecorredor();
+                Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -153,7 +153,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.getHijos().getRecorredor();
+                Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -167,7 +167,7 @@ namespace SNDT
 
         public bool existeClase(ArbolGeneral enArbol, string enClase)
         {
-            if (enArbol.getnivel() == 3)
+            if (enArbol.NivelNodo == 3)
             {
                 if (enArbol.getDatoRaiz().Nombre == enClase)
                 {
@@ -178,7 +178,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.getHijos().getRecorredor();
+                Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -203,7 +203,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.getHijos().getRecorredor();
+                Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -211,7 +211,7 @@ namespace SNDT
                     rec.proximo();
                 }
             }
-        } 
+        }
         #endregion
 
     }

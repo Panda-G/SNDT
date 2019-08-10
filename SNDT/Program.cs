@@ -12,7 +12,7 @@ namespace SNDT
             Console.WriteLine(" ");
             //Crea instancia del Arbol Principal que se usa durante todo el programac
             ArbolGeneral arbolGeneral = new ArbolGeneral("Dominio");
-            arbolGeneral.setnivel(0);
+            arbolGeneral.NivelNodo = 0;
             Menu objMenu = new Menu();
             //Pasamos el objeto Arbol creado a una clase "Menu"
             objMenu.inicio(arbolGeneral);

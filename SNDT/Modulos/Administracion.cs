@@ -98,7 +98,7 @@ namespace SNDT
                             Cola<string> cola = new Cola<string>();
                             if (this.Validar(cola, nDominio))
                             {
-                                if (this.arbolAdmin.getHijos().obtenerTamanio() == 0)
+                                if (this.arbolAdmin.getListaHijos().obtenerTamanio() == 0)
                                 {
                                     Console.WriteLine("El arbol no pose datos.");
                                 }
@@ -123,7 +123,7 @@ namespace SNDT
                         Thread.Sleep(400);
                         break;
                     case "5":
-                        this.arbolAdmin.recorridoPreOrden();
+                        this.arbolAdmin.recorridoPreorden();
                         Console.ReadKey();
                         break;
                     default:
@@ -142,10 +142,10 @@ namespace SNDT
         {
             if (!cola.esVacia())
             {
-                arbol.setnivel(nivel);
+                arbol.NivelNodo = nivel;
                 if (existeCategoria(arbol, cola.tope()))
                 {
-                    Recorredor rec = arbol.getHijos().getRecorredor();
+                    Recorredor rec = arbol.getListaHijos().getRecorredor();
                     rec.comenzar();
                     while (!rec.fin())
                     {
@@ -163,13 +163,13 @@ namespace SNDT
                     {
                         string[] especie = metIngresarDatosEspecie(cola.tope());
                         ArbolGeneral arbolEspecie = new ArbolGeneral(cola.desencolar(), especie);
-                        arbolEspecie.setnivel(7);
+                        arbolEspecie.NivelNodo= 7;
                         arbol.agregarHijo(arbolEspecie);
                     }
                     else
                     {
                         arbol.agregarHijo(new ArbolGeneral(cola.desencolar()));
-                        Recorredor rec = arbol.getHijos().getRecorredor();
+                        Recorredor rec = arbol.getListaHijos().getRecorredor();
                         rec.comenzar();
                         while (!rec.fin())
                         {
@@ -259,7 +259,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = arbol.getHijos().getRecorredor();
+                Recorredor rec = arbol.getListaHijos().getRecorredor();
                 rec.comenzar();
                 while (rec.fin() == false)
                 {
@@ -269,7 +269,7 @@ namespace SNDT
                     }
                     rec.proximo();
                 }
-                if (arbol.getHijos().obtenerTamanio() == 0)
+                if (arbol.getListaHijos().obtenerTamanio() == 0)
                     return true;
                 return false;
             }
@@ -300,7 +300,7 @@ namespace SNDT
         //Retorna True, si la categoria ya existe, y False en caso contrario
         public static bool existeCategoria(ArbolGeneral arbol, string inCola)
         {
-            Recorredor rec = arbol.getHijos().getRecorredor();
+            Recorredor rec = arbol.getListaHijos().getRecorredor();
             rec.comenzar();
             while (!rec.fin())
             {

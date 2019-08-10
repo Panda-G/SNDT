@@ -10,18 +10,19 @@ namespace SNDT
     public class ArbolGeneral
     {
         private NodoGeneral raiz;
-        private int nivel = 0;
+        private int nivelNodo = 0;
         public NodoGeneral Raiz { get => raiz; set => raiz = value; }
+        public int NivelNodo { get => nivelNodo; set => nivelNodo = value; }
 
         #region Constructores
-        public ArbolGeneral(string enDato)
+        public ArbolGeneral(string categoria)
         {
-            this.Raiz = new NodoGeneral(new TipoDominio(enDato));
+            this.Raiz = new NodoGeneral(new TipoDominio(categoria));
         }
-        public ArbolGeneral (string enEspecie, string[] datoEspecie)
+        public ArbolGeneral (string categoria, string[] datoEspecie)
         {
-            Especie miEspecie = new Especie(enEspecie, datoEspecie[0], datoEspecie[1]);
-            this.Raiz = new NodoGeneral(miEspecie);
+            Especie categoriaEspecie = new Especie(categoria, datoEspecie[0], datoEspecie[1]);
+            this.Raiz = new NodoGeneral(categoriaEspecie);
         }
         #endregion
 
@@ -30,7 +31,7 @@ namespace SNDT
         {
             return this.Raiz.Dato;
         }
-        public ListaConArreglo getHijos()
+        public ListaConArreglo getListaHijos()
         {
             return this.Raiz.ListaHijos;
         }
@@ -49,37 +50,30 @@ namespace SNDT
         }
         public bool esHoja()
         {
-            return this.Raiz != null && this.getHijos().obtenerTamanio() == 0;
+            return this.Raiz != null && this.getListaHijos().obtenerTamanio() == 0;
         }
-        public void recorridoPreOrden()
+        public void recorridoPreorden()
         {
             Console.WriteLine(getDatoRaiz().Nombre);
             if (esHoja())
             {
-                if (this.nivel != 0)
+                if (this.NivelNodo != 0)
                 {
                     Especie esp = (Especie)getDatoRaiz();
-                    Console.Write(" \tMetabolismo: " + esp.Dato.Metabolismo + "\n\tReproduccion: " + esp.Dato.Reproduccion + "\n");
+                    Console.Write(" \tMetabolismo: " + esp.Dato.Metabolismo + 
+                                 "\n\tReproduccion: " + esp.Dato.Reproduccion + "\n");
                 }
             }
             else
             {
-                Recorredor rec = this.getHijos().getRecorredor();
-                rec.comenzar();
-                while (rec.fin() == false)
+                Recorredor recorrer = this.getListaHijos().getRecorredor();
+                recorrer.comenzar();
+                while (recorrer.fin() == false)
                 {
-                    ((ArbolGeneral)rec.elemento()).recorridoPreOrden();
-                    rec.proximo();
+                    ((ArbolGeneral)recorrer.elemento()).recorridoPreorden();
+                    recorrer.proximo();
                 }
             }
-        }
-        public int getnivel()
-        {
-            return this.nivel;
-        }
-        public void setnivel(int n)
-        {
-            this.nivel = n;
         }
         #endregion
 

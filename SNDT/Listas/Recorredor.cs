@@ -17,22 +17,18 @@ namespace SNDT
             this.lista = new ListaConArreglo();
             this.lista.Datos = enLista;
         }
-
         public void comenzar()
         {
             this.actual = 0;
         }
-
         public object elemento()
         {
-            return this.lista.elemento(this.actual);
+            return this.lista.obtenerElemento(this.actual);
         }
-
         public void proximo()
         {
             this.actual += 1;
         }
-
         public bool fin()
         {
             if (!(actual <= lista.obtenerTamanio() - 1))

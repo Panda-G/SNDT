@@ -9,16 +9,14 @@ namespace SNDT
     public class Especie : TipoDominioAbstracto
     {
         private DatosEspecie dato;
-
         public DatosEspecie Dato { get => dato; set => dato = value; }
-
         public Especie(string nombreEspecie, string datoMeta, string datoRepr)
         {
             this.Nombre = nombreEspecie;
             Dato = new DatosEspecie(datoMeta, datoRepr);
         }
-
     }
+
     public class DatosEspecie
     {
         private string metabolismo;
@@ -32,5 +30,4 @@ namespace SNDT
             this.reproduccion = reproduccion;
         }
     }
-
 }
