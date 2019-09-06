@@ -16,11 +16,7 @@ namespace SNDT
         public abstract bool esVacia();
         public abstract bool incluye(object elem);
 
-<<<<<<< HEAD:SNDT/Listas/Lista.cs
         public abstract Recorredor getRecorredor();
-=======
-        public abstract Recorredor Recorredor();
->>>>>>> version-3:ClasesUtilizadas/Lista.cs
 
         public int obtenerTamanio()
         {

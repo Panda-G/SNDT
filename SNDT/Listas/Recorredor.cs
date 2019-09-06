@@ -12,20 +12,11 @@ namespace SNDT
         private ListaConArreglo lista;
         private int actual;
 
-<<<<<<< HEAD:SNDT/Listas/Recorredor.cs
         public Recorredor(ArrayList enLista)
         {
             this.lista = new ListaConArreglo();
             this.lista.Datos = enLista;
         }
-=======
-        public Recorredor(ArrayList inLista)
-        {
-            lista = new ListaConArreglo();
-            this.lista.Datos = inLista;
-        }
-
->>>>>>> version-3:ClasesUtilizadas/Recorredor.cs
         public void comenzar()
         {
             this.actual = 0;
@@ -40,11 +31,7 @@ namespace SNDT
         }
         public bool fin()
         {
-<<<<<<< HEAD:SNDT/Listas/Recorredor.cs
             if (!(actual <= lista.obtenerTamanio() - 1))
-=======
-            if (actual == lista.getTamanio())
->>>>>>> version-3:ClasesUtilizadas/Recorredor.cs
             {
                 return true;
             }

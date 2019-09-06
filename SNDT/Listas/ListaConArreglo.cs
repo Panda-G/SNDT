@@ -16,21 +16,11 @@ namespace SNDT
 
         public ListaConArreglo()
         {
-<<<<<<< HEAD:SNDT/Listas/ListaConArreglo.cs
             inicial = 0;
             Datos = new ArrayList();
-=======
-            this.inicial = 0;
-            this.Datos = new ArrayList();
-        }
-        public override object elemento(int pos)
-        {
-            return this.Datos[pos];
->>>>>>> version-3:ClasesUtilizadas/ListaConArreglo.cs
         }
         public override object obtenerElemento(int pos)
         {
-<<<<<<< HEAD:SNDT/Listas/ListaConArreglo.cs
             return Datos[pos];
         }
         
@@ -41,30 +31,12 @@ namespace SNDT
                 Datos.Add(elem);
                 tamanio += 1;
             }
-=======
-            Datos.Add(elem);
-            tamanio += 1;
-        }
-        public void agregar(int elem)
-        {
-            Datos.Add(elem);
-            tamanio += 1;
-        } 
-        public override void agregar(object elem, int pos)
-        {
-            this.Datos[pos] = elem;
-            tamanio += 1;
->>>>>>> version-3:ClasesUtilizadas/ListaConArreglo.cs
         }
 
         public override void eliminar(int pos)
         {
             Datos.RemoveAt(pos);
-<<<<<<< HEAD:SNDT/Listas/ListaConArreglo.cs
             tamanio -= 1;
-=======
-            this.tamanio -= 1;
->>>>>>> version-3:ClasesUtilizadas/ListaConArreglo.cs
         }
         public void eliminar(object elem)
         {
@@ -79,11 +51,7 @@ namespace SNDT
         }
         public override bool incluye(object elem)
         {
-<<<<<<< HEAD:SNDT/Listas/ListaConArreglo.cs
             foreach (var item in Datos)
-=======
-            foreach (object item in Datos)
->>>>>>> version-3:ClasesUtilizadas/ListaConArreglo.cs
             {
                 if (item.Equals(elem))
                 {
@@ -92,11 +60,7 @@ namespace SNDT
             }
             return false;
         }
-<<<<<<< HEAD:SNDT/Listas/ListaConArreglo.cs
         public override Recorredor getRecorredor()
-=======
-        public override Recorredor Recorredor()
->>>>>>> version-3:ClasesUtilizadas/ListaConArreglo.cs
         {
             return new Recorredor(Datos);
         }

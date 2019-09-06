@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD:SNDT/Modulos/Menu.cs
-=======
-using SNDT.ClasesUtilizadas;
 using System.Threading;
->>>>>>> version-3:Modulos/Menu.cs
 
 namespace SNDT
 {
     public class Menu
     {
-<<<<<<< HEAD:SNDT/Modulos/Menu.cs
-        private ArbolGeneral arbolPrincipal;
-=======
         private ArbolGeneral ArbolPrincipal;
->>>>>>> version-3:Modulos/Menu.cs
 
         //"inicio" contiene la primer vista del programa, mostrando los modulos disponibles
         public void inicio(ArbolGeneral inArbolGeneral)
