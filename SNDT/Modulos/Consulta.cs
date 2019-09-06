@@ -119,13 +119,21 @@ namespace SNDT
 
         public void proCategorias(ArbolGeneral enArbol, int profundidad)
         {
+<<<<<<< HEAD:SNDT/Modulos/Consulta.cs
             if (enArbol.esHoja() || enArbol.NivelNodo == profundidad)
+=======
+            if (inArbol.esHoja() || inArbol.Nivel == profundidad)
+>>>>>>> version-3:Modulos/SubMenuConsulta.cs
             {
                 Console.WriteLine("> {0}", enArbol.getDatoRaiz().Nombre);
             }
             else
             {
+<<<<<<< HEAD:SNDT/Modulos/Consulta.cs
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
+=======
+                Recorredor rec = inArbol.getHijos().Recorredor();
+>>>>>>> version-3:Modulos/SubMenuConsulta.cs
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -153,7 +161,11 @@ namespace SNDT
             }
             else
             {
+<<<<<<< HEAD:SNDT/Modulos/Consulta.cs
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
+=======
+                Recorredor rec = inArbol.getHijos().Recorredor();
+>>>>>>> version-3:Modulos/SubMenuConsulta.cs
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -167,7 +179,11 @@ namespace SNDT
 
         public bool existeClase(ArbolGeneral enArbol, string enClase)
         {
+<<<<<<< HEAD:SNDT/Modulos/Consulta.cs
             if (enArbol.NivelNodo == 3)
+=======
+            if (inArbol.Nivel == 3)
+>>>>>>> version-3:Modulos/SubMenuConsulta.cs
             {
                 if (enArbol.getDatoRaiz().Nombre == enClase)
                 {
@@ -178,7 +194,11 @@ namespace SNDT
             }
             else
             {
+<<<<<<< HEAD:SNDT/Modulos/Consulta.cs
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
+=======
+                Recorredor rec = inArbol.getHijos().Recorredor();
+>>>>>>> version-3:Modulos/SubMenuConsulta.cs
                 rec.comenzar();
                 while (!rec.fin())
                 {
@@ -203,7 +223,12 @@ namespace SNDT
             }
             else
             {
+<<<<<<< HEAD:SNDT/Modulos/Consulta.cs
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
+=======
+                Recorredor rec = inArbol.getHijos().Recorredor();
+                //Recorredor rec = new Recorredor(inArbol.getHijos());
+>>>>>>> version-3:Modulos/SubMenuConsulta.cs
                 rec.comenzar();
                 while (!rec.fin())
                 {
