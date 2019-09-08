@@ -9,49 +9,49 @@ namespace SNDT
 {
     public class ListaConArreglo : Lista
     {
-        private int inicial;
-        private ArrayList datos;
+        //private int punteroInicial;
 
-        public ArrayList Datos { get => datos; set => datos = value; }
+        //lista de hijos
+        private ArrayList hijos;
+        public ArrayList Hijos { get => hijos; set => hijos = value; }
+
 
         public ListaConArreglo()
         {
-            inicial = 0;
-            Datos = new ArrayList();
+            //this.punteroInicial = 0;
+            Hijos = new ArrayList();
         }
         public override ArbolGeneral obtenerElemento(int pos)
         {
-            return (ArbolGeneral)Datos[pos];
+            return (ArbolGeneral)Hijos[pos];
         }
-        
-        public override void agregarElementoEn(object elem, int pos)
+        public override void agregarElemento(object elem, int pos)
         {
-            if (pos == Datos.Count)
+            if (pos == Hijos.Count)
             {
-                Datos.Add(elem);
+                Hijos.Add(elem);
                 tamanio += 1;
             }
         }
-
         public override void eliminar(int pos)
         {
-            Datos.RemoveAt(pos);
+            Hijos.RemoveAt(pos);
             tamanio -= 1;
         }
         public void eliminar(object elem)
         {
-            this.Datos.Remove(elem);
+            this.Hijos.Remove(elem);
             this.tamanio -= 1;
         }
         public override bool esVacia()
         {
-            if ((Datos.Count) == 0)
+            if ((Hijos.Count) == 0)
                 return true;
             return false;
         }
         public override bool incluye(object elem)
         {
-            foreach (var item in Datos)
+            foreach (var item in Hijos)
             {
                 if (item.Equals(elem))
                 {
@@ -62,7 +62,7 @@ namespace SNDT
         }
         public override Recorredor getRecorredor()
         {
-            return new Recorredor(Datos);
+            return new Recorredor(Hijos);
         }
     }
 }

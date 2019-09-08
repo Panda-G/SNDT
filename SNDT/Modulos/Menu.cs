@@ -9,12 +9,12 @@ namespace SNDT
 {
     public static class Menu
     {
-        private static ArbolGeneral ArbolPrincipal;
+        //private static ArbolGeneral arbolPrincipal;
 
         //"inicio" contiene la primer vista del programa, mostrando los modulos disponibles
         public static void inicio(ArbolGeneral enArbolGeneral)
         {
-            ArbolPrincipal = enArbolGeneral;
+            ArbolGeneral arbolPrincipal = enArbolGeneral;
             bool salirMenu = false;
             do
             {

@@ -8,7 +8,7 @@ namespace SNDT
 {
     public class Cola<T>
     {
-        private readonly List<T> datos = new List<T>();
+        private readonly List<T> datosCola = new List<T>();
         private int cantidadElementos;
         private T anterior;
 
@@ -16,14 +16,14 @@ namespace SNDT
 
         public void encolarElemento(T elem)
         {
-            this.datos.Add(elem);
+            this.datosCola.Add(elem);
             ++this.CantidadElementos;
         }
 
         public T desencolar()
         {
-            T temp = anterior = this.datos[0];
-            this.datos.RemoveAt(0);
+            T temp = anterior = this.datosCola[0];
+            this.datosCola.RemoveAt(0);
             --this.CantidadElementos;
             return temp;
         }
@@ -35,12 +35,12 @@ namespace SNDT
 
         public T tope()
         {
-            return this.datos[0];
+            return this.datosCola[0];
         }
 
         public bool esVacia()
         {
-            return this.datos.Count == 0 && this.CantidadElementos == 0;
+            return this.datosCola.Count == 0 && this.CantidadElementos == 0;
         }
 
         public int obtenerCantidad()

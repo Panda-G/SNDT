@@ -41,8 +41,7 @@ namespace SNDT
                             Cola<string> colaCategoria = new Cola<string>();
                             if (Validar(colaCategoria, nombreDominio))
                             {
-                                int nivel = 0;
-                                arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, nivel);
+                                arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, 0);
 
                                 Menu.agregadoCorrecto(true);
                             }
@@ -92,7 +91,7 @@ namespace SNDT
                             Cola<string> colaCategoria = new Cola<string>();
                             if (Validar(colaCategoria, nombreDominio))
                             {
-                                if (arbolAdmin.getListaHijos().obtenerTamanio() == 0)
+                                if (arbolAdmin.getListaHijos().tamanioLista() == 0)
                                 {
                                     Console.WriteLine("El arbol no pose datos.");
                                 }
@@ -154,8 +153,7 @@ namespace SNDT
                     if (cola.obtenerCantidad() == 1)
                     {
                         string[] especie = solicitarEspecie(cola.tope());
-                        ArbolGeneral arbolEspecie = new ArbolGeneral(cola.desencolar(), especie);
-                        arbolEspecie.NivelNodo= 7;
+                        ArbolGeneral arbolEspecie = new ArbolGeneral(cola.desencolar(), especie) { NivelNodo = 7 };
                         arbol.agregarHijo(arbolEspecie);
                     }
                     else
@@ -179,7 +177,7 @@ namespace SNDT
         {
 
             #region Secccion Metabolismo
-            string seleccionMetabolismo = "0", seleccionReproduccion = "0";
+            string seleccionMetabolismo, seleccionReproduccion;
             bool esFin = false;
             string[] especieDatos = new string[2];
             do
@@ -261,7 +259,7 @@ namespace SNDT
                     }
                     recorrerArbol.proximo();
                 }
-                if (arbol.getListaHijos().obtenerTamanio() == 0)
+                if (arbol.getListaHijos().tamanioLista() == 0)
                     return true;
                 return false;
             }

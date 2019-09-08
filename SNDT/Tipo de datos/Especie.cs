@@ -19,8 +19,8 @@ namespace SNDT
 
     public class DatosEspecie
     {
-        private string metabolismo;
-        private string reproduccion;
+        private readonly string metabolismo;
+        private readonly string reproduccion;
 
         public string Metabolismo { get => metabolismo; }
         public string Reproduccion { get => reproduccion; }

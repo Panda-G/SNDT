@@ -29,12 +29,7 @@ namespace SNDT
         #endregion
 
         #region Metodos
-        
-        /// <summary>
-        /// Permite obtener el 'Dato' de la 'Raiz'
-        /// </summary>
-        /// <remarks>Se desea obtener el nombre de tipo 'string' dentro de la Raiz</remarks>
-        /// <returns>TipoDominioAbstracto</returns>
+    
         public TipoDominioAbstracto getDatoRaiz()
         {
             return this.Raiz.Dato;
@@ -45,7 +40,7 @@ namespace SNDT
         }
         public void agregarHijo(ArbolGeneral hijo)
         {
-            this.Raiz.ListaHijos.agregarElementoEn(hijo, Raiz.ListaHijos.obtenerTamanio());
+            this.Raiz.ListaHijos.agregarElemento(hijo, Raiz.ListaHijos.tamanioLista());
         }
 
         public void eliminarHijo(ArbolGeneral hijo)
@@ -58,7 +53,7 @@ namespace SNDT
         }
         public bool esHoja()
         {
-            return this.Raiz != null && this.getListaHijos().obtenerTamanio() == 0;
+            return this.Raiz != null && this.getListaHijos().tamanioLista() == 0;
         }
         //Imprime en pantalla el recorrido Pre-Orden del arbol del que es llamado
         public void recorridoPreOrden()

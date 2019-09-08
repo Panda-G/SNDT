@@ -9,13 +9,12 @@ namespace SNDT
 {
     public class Recorredor
     {
-        private ListaConArreglo lista;
+        private readonly ListaConArreglo lista;
         private int actual;
 
         public Recorredor(ArrayList enLista)
         {
-            this.lista = new ListaConArreglo();
-            this.lista.Datos = enLista;
+            this.lista = new ListaConArreglo { Hijos = enLista };
         }
         public void comenzar()
         {
@@ -31,11 +30,14 @@ namespace SNDT
         }
         public bool esFin()
         {
-            if (!(actual <= lista.obtenerTamanio() - 1))
+            if (!(actual <= lista.tamanioLista() - 1))
             {
                 return true;
             }
             return false;
+            //if (this.lista.esVacia())
+            //    return true;
+            //return false;
         }
     }
 }
