@@ -8,13 +8,13 @@ using System.Collections;
 
 namespace SNDT
 {
-    public class Consulta
+    public static class Consulta
     {
-        ArbolGeneral arbolConsulta;
+        private static ArbolGeneral arbolConsulta;
 
-        public void inicioConsulta(ArbolGeneral arbol)
+        public static void inicioConsulta(ArbolGeneral arbol)
         {
-            this.arbolConsulta = arbol;
+            arbolConsulta = arbol;
 
             if (!arbolConsulta.esHoja())
             {
@@ -44,7 +44,7 @@ namespace SNDT
                                 Console.WriteLine("Ingrese el nombre de la Especie que desea conocer.\n");
                                 Console.Write(">Especie: "); string especieBusqueda = Console.ReadLine();
                                 //buscarCategoria29(this.arbolConsulta, especieBusqueda);
-                                if (!existeEspecie(this.arbolConsulta, especieBusqueda))
+                                if (!existeEspecie(arbolConsulta, especieBusqueda))
                                 {
                                     Console.WriteLine("\nLa Especie ingresada '{0}' no existe.\n\nPulse una tecla para salir...", especieBusqueda);
                                 }
@@ -60,7 +60,7 @@ namespace SNDT
                             {
                                 Menu.menuMostrarTitulo("Módulo de Consultas > Especies de Clase");
                                 Console.WriteLine(">Clase: "); string claseBusqueda = Console.ReadLine();
-                                if (!existeClase(this.arbolConsulta, claseBusqueda))
+                                if (!existeClase(arbolConsulta, claseBusqueda))
                                 {
                                     Console.WriteLine("\nLa Clase ingresada '{0}' no existe.\n\nPulse una tecla para salir...", claseBusqueda);
                                 }
@@ -81,7 +81,7 @@ namespace SNDT
                                 try
                                 {
                                     int profundidad = Convert.ToInt16(Console.ReadLine());
-                                    proCategorias(this.arbolConsulta, profundidad);
+                                    proCategorias(arbolConsulta, profundidad);
                                 }
                                 catch (Exception)
                                 {
@@ -117,7 +117,7 @@ namespace SNDT
 
         #region Metodos
 
-        public void proCategorias(ArbolGeneral enArbol, int profundidad)
+        public static void proCategorias(ArbolGeneral enArbol, int profundidad)
         {
             if (enArbol.esHoja() || enArbol.NivelNodo == profundidad)
             {
@@ -165,7 +165,7 @@ namespace SNDT
             }
         }
 
-        public bool existeClase(ArbolGeneral enArbol, string enClase)
+        public static bool existeClase(ArbolGeneral enArbol, string enClase)
         {
             if (enArbol.NivelNodo == 3)
             {
@@ -190,7 +190,7 @@ namespace SNDT
             }
         }
 
-        public void metBuscarEspecieClase(ArbolGeneral enArbol)
+        public static void metBuscarEspecieClase(ArbolGeneral enArbol)
         {
             if (enArbol.esHoja())
             {
