@@ -12,9 +12,9 @@ namespace SNDT
         private ArbolGeneral ArbolPrincipal;
 
         //"inicio" contiene la primer vista del programa, mostrando los modulos disponibles
-        public void inicio(ArbolGeneral inArbolGeneral)
+        public void inicio(ArbolGeneral enArbolGeneral)
         {
-            this.ArbolPrincipal = inArbolGeneral;
+            this.ArbolPrincipal = enArbolGeneral;
             bool salirMenu = false;
             do
             {
@@ -30,12 +30,10 @@ namespace SNDT
                 switch (opcion)
                 {
                     case "1":
-                        Administracion administracion = new Administracion();
-                        administracion.inicioAdmin(inArbolGeneral);
+                        Administracion.inicioAdmin(enArbolGeneral);
                         break;
                     case "2":
-                        Consulta consultas = new Consulta();
-                        consultas.inicioConsulta(inArbolGeneral);
+                        Consulta.inicioConsulta(enArbolGeneral);
                         break;
                     case "3":
                         salirMenu = true;

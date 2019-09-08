@@ -8,12 +8,12 @@ using System.Collections;
 
 namespace SNDT
 {
-    public class Administracion
+    public static class Administracion
     {
-        ArbolGeneral arbolAdmin;
-        public void inicioAdmin(ArbolGeneral enArbol)
+        private static ArbolGeneral arbolAdmin;
+        public static void inicioAdmin(ArbolGeneral enArbol)
         {
-            this.arbolAdmin = enArbol;
+            arbolAdmin = enArbol;
 
             bool salirMenuAdmin = false;
             do
@@ -40,10 +40,10 @@ namespace SNDT
 
                             string[] nombreDominio = Console.ReadLine().Split('.');
                             Cola<string> objCola = new Cola<string>();
-                            if (this.Validar(objCola, nombreDominio))
+                            if (Validar(objCola, nombreDominio))
                             {
                                 int nivel = 0;
-                                this.arbolAdmin = insetarDominioArbol(enArbol, objCola, nivel);
+                                arbolAdmin = insetarDominioArbol(enArbol, objCola, nivel);
 
                                 Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
                                 Thread.Sleep(800);
@@ -77,7 +77,7 @@ namespace SNDT
                             if (cateValida == true)
                             {
                                 int nivel = 0;
-                                this.arbolAdmin = insetarDominioArbol(enArbol, cola, nivel);
+                                arbolAdmin = insetarDominioArbol(enArbol, cola, nivel);
 
                                 Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
                                 Thread.Sleep(800);
@@ -96,13 +96,13 @@ namespace SNDT
 
                             string[] nDominio = Console.ReadLine().Split('.');
                             Cola<string> cola = new Cola<string>();
-                            if (this.Validar(cola, nDominio))
+                            if (Validar(cola, nDominio))
                             {
-                                if (this.arbolAdmin.getListaHijos().obtenerTamanio() == 0)
+                                if (arbolAdmin.getListaHijos().obtenerTamanio() == 0)
                                 {
                                     Console.WriteLine("El arbol no pose datos.");
                                 }
-                                else if (eliminarRecorrido(this.arbolAdmin, nDominio))
+                                else if (eliminarRecorrido(arbolAdmin, nDominio))
                                 {
                                     Console.WriteLine("Especie '[{0}]' eliminada con exito", nDominio[6]);
                                 }
@@ -123,7 +123,7 @@ namespace SNDT
                         Thread.Sleep(400);
                         break;
                     case "5":
-                        this.arbolAdmin.recorridoPreorden();
+                        arbolAdmin.recorridoPreorden();
                         Console.ReadKey();
                         break;
                     default:
@@ -138,7 +138,7 @@ namespace SNDT
 
         #region Metodos
         //Se encargarga de insertar el dominio al arbol
-        public ArbolGeneral insetarDominioArbol(ArbolGeneral arbol, Cola<string> cola, int nivel)
+        public static ArbolGeneral insetarDominioArbol(ArbolGeneral arbol, Cola<string> cola, int nivel)
         {
             if (!cola.esVacia())
             {
@@ -183,7 +183,7 @@ namespace SNDT
             return arbol;
         }
         //Cumple la funcion de solicitar los datos de la especie 
-        public string[] metIngresarDatosEspecie(string inEspecie)
+        public static string[] metIngresarDatosEspecie(string inEspecie)
         {
 
             #region Secccion Metabolismo
@@ -246,7 +246,7 @@ namespace SNDT
 
         }
         //Eliminar la especie, indicada como parametro, del arbol
-        public bool eliminarRecorrido(ArbolGeneral arbol, string[] inEspecie)
+        public static bool eliminarRecorrido(ArbolGeneral arbol, string[] inEspecie)
         {
             if (arbol.esHoja())
             {
@@ -275,7 +275,7 @@ namespace SNDT
             }
         }
         //Comprueba las categorias ingresadas
-        public bool Validar(Cola<string> cola, string[] entrada)
+        public static bool Validar(Cola<string> cola, string[] entrada)
         {
             if (entrada.Count() == 7)
             {

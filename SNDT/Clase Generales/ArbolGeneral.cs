@@ -9,8 +9,10 @@ namespace SNDT
 {
     public class ArbolGeneral
     {
+        //Atributos de la clase [ArbolGeneral]
         private NodoGeneral raiz;
         private int nivelNodo = 0;
+        //Propiedades
         public NodoGeneral Raiz { get => raiz; set => raiz = value; }
         public int NivelNodo { get => nivelNodo; set => nivelNodo = value; }
 
@@ -27,6 +29,8 @@ namespace SNDT
         #endregion
 
         #region Metodos
+        
+        //[getDatoRaiz] devuelve una clase [TipoDominioAbstracto], para obtener un string
         public TipoDominioAbstracto getDatoRaiz()
         {
             return this.Raiz.Dato;
@@ -52,6 +56,7 @@ namespace SNDT
         {
             return this.Raiz != null && this.getListaHijos().obtenerTamanio() == 0;
         }
+        //Imprime en pantalla el recorrido Pre-Orden del arbol del que es llamado
         public void recorridoPreorden()
         {
             Console.WriteLine(getDatoRaiz().Nombre);
