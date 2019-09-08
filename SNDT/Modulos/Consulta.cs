@@ -49,7 +49,7 @@ namespace SNDT
                                     Console.WriteLine("\nLa Especie ingresada '{0}' no existe.\n\nPulse una tecla para salir...", especieBusqueda);
                                 }
                                 Console.ReadKey();
-                                resp = Menu.obtenerRespusta();
+                                resp = Menu.repetirOperacion();
                             } while (char.ToLower(resp) == 's');
                             break;
                         #endregion
@@ -65,7 +65,7 @@ namespace SNDT
                                     Console.WriteLine("\nLa Clase ingresada '{0}' no existe.\n\nPulse una tecla para salir...", claseBusqueda);
                                 }
                                 Console.ReadKey();
-                                resp = Menu.obtenerRespusta();
+                                resp = Menu.repetirOperacion();
                             } while (char.ToLower(resp) == 's');
                             break;
                         #endregion
@@ -88,7 +88,7 @@ namespace SNDT
                                     Console.WriteLine("El valor ingresado no es un numero ");
                                 }
                                 Console.ReadKey();
-                                resp = Menu.obtenerRespusta();
+                                resp = Menu.repetirOperacion();
                             } while (char.ToLower(resp) == 's');
                             break;
                         #endregion
@@ -127,9 +127,9 @@ namespace SNDT
             {
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 rec.comenzar();
-                while (!rec.fin())
+                while (!rec.esFin())
                 {
-                    proCategorias((ArbolGeneral)rec.elemento(), profundidad);
+                    proCategorias((ArbolGeneral)rec.obtenerElemento(), profundidad);
                     rec.proximo();
                 }
             }
@@ -155,9 +155,9 @@ namespace SNDT
             {
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 rec.comenzar();
-                while (!rec.fin())
+                while (!rec.esFin())
                 {
-                    if (existeEspecie((ArbolGeneral)rec.elemento(), especieBusqueda))
+                    if (existeEspecie((ArbolGeneral)rec.obtenerElemento(), especieBusqueda))
                         return true;
                     rec.proximo();
                 }
@@ -180,9 +180,9 @@ namespace SNDT
             {
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 rec.comenzar();
-                while (!rec.fin())
+                while (!rec.esFin())
                 {
-                    if (existeClase((ArbolGeneral)rec.elemento(), enClase))
+                    if (existeClase((ArbolGeneral)rec.obtenerElemento(), enClase))
                         return true;
                     rec.proximo();
                 }
@@ -206,9 +206,9 @@ namespace SNDT
                 Recorredor rec = enArbol.getListaHijos().getRecorredor();
                 //Recorredor rec = new Recorredor(inArbol.getHijos());
                 rec.comenzar();
-                while (!rec.fin())
+                while (!rec.esFin())
                 {
-                    metBuscarEspecieClase((ArbolGeneral)rec.elemento());
+                    metBuscarEspecieClase((ArbolGeneral)rec.obtenerElemento());
                     rec.proximo();
                 }
             }

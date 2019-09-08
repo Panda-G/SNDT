@@ -28,7 +28,6 @@ namespace SNDT
                 #endregion
 
                 #region Opciones
-                char resp = ' ';
                 switch (opcion)
                 {
                     #region 1- Ingresar cadena completa
@@ -48,8 +47,7 @@ namespace SNDT
                                 Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
                                 Thread.Sleep(800);
                             }
-                            resp = Menu.obtenerRespusta();
-                        } while (char.ToLower(resp) == 's');
+                        } while (Menu.repetirOperacion() == 's');
                         break;
                     #endregion
 
@@ -67,7 +65,7 @@ namespace SNDT
                                 Console.WriteLine(categorias[i] + ": ");
                                 string categoria = Console.ReadLine();
                                 if (categoria != "" && categoria != " ")
-                                    cola.encolar(categoria);
+                                    cola.encolarElemento(categoria);
                                 else
                                 {
                                     Console.WriteLine("\nCategoria(s) ingresada(s) no validas.");
@@ -82,8 +80,7 @@ namespace SNDT
                                 Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
                                 Thread.Sleep(800);
                             }
-                            resp = Menu.obtenerRespusta();
-                        } while (char.ToLower(resp) == 's');
+                        } while (Menu.repetirOperacion() == 's');
                         break;
                     #endregion
 
@@ -111,9 +108,7 @@ namespace SNDT
                                     Console.WriteLine("Especie '{0}' no se encuentra en el Sistema.", nDominio[6]);
                                 }
                             }
-
-                            resp = Menu.obtenerRespusta();
-                        } while (char.ToLower(resp) == 's');
+                        } while (Menu.repetirOperacion() == 's');
                         break;
                     #endregion
 
@@ -147,12 +142,12 @@ namespace SNDT
                 {
                     Recorredor rec = arbol.getListaHijos().getRecorredor();
                     rec.comenzar();
-                    while (!rec.fin())
+                    while (!rec.esFin())
                     {
-                        if (!cola.esVacia() && ((ArbolGeneral)rec.elemento()).getDatoRaiz().Nombre == cola.tope())
+                        if (!cola.esVacia() && ((ArbolGeneral)rec.obtenerElemento()).getDatoRaiz().Nombre == cola.tope())
                         {
                             cola.desencolar();
-                            insetarDominioArbol((ArbolGeneral)rec.elemento(), cola, ++nivel);
+                            insetarDominioArbol((ArbolGeneral)rec.obtenerElemento(), cola, ++nivel);
                         }
                         rec.proximo();
                     }
@@ -171,10 +166,10 @@ namespace SNDT
                         arbol.agregarHijo(new ArbolGeneral(cola.desencolar()));
                         Recorredor rec = arbol.getListaHijos().getRecorredor();
                         rec.comenzar();
-                        while (!rec.fin())
+                        while (!rec.esFin())
                         {
-                            if (cola.obtenerAnterior() == ((ArbolGeneral)rec.elemento()).getDatoRaiz().Nombre)
-                                insetarDominioArbol((ArbolGeneral)rec.elemento(), cola, ++nivel);
+                            if (cola.obtenerAnterior() == ((ArbolGeneral)rec.obtenerElemento()).getDatoRaiz().Nombre)
+                                insetarDominioArbol((ArbolGeneral)rec.obtenerElemento(), cola, ++nivel);
                             rec.proximo();
                         }
                     }
@@ -261,11 +256,11 @@ namespace SNDT
             {
                 Recorredor rec = arbol.getListaHijos().getRecorredor();
                 rec.comenzar();
-                while (rec.fin() == false)
+                while (rec.esFin() == false)
                 {
-                    if (eliminarRecorrido(((ArbolGeneral)rec.elemento()), inEspecie))
+                    if (eliminarRecorrido(((ArbolGeneral)rec.obtenerElemento()), inEspecie))
                     {
-                        arbol.eliminarHijo(((ArbolGeneral)rec.elemento()));
+                        arbol.eliminarHijo(((ArbolGeneral)rec.obtenerElemento()));
                     }
                     rec.proximo();
                 }
@@ -281,7 +276,7 @@ namespace SNDT
             {
                 if (!(entrada.Contains("") || entrada.Contains(" ")))
                 {
-                    foreach (var item in entrada) { cola.encolar(item); }
+                    foreach (var item in entrada) { cola.encolarElemento(item); }
                     return true;
                 }
                 Console.WriteLine("Categoria(s) ingresada(s) no validas."); return false;
@@ -302,9 +297,9 @@ namespace SNDT
         {
             Recorredor rec = arbol.getListaHijos().getRecorredor();
             rec.comenzar();
-            while (!rec.fin())
+            while (!rec.esFin())
             {
-                if (((ArbolGeneral)rec.elemento()).getDatoRaiz().Nombre == inCola)
+                if (((ArbolGeneral)rec.obtenerElemento()).getDatoRaiz().Nombre == inCola)
                 {
                     return true;
                 }

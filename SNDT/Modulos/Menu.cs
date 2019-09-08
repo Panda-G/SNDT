@@ -7,14 +7,14 @@ using System.Threading;
 
 namespace SNDT
 {
-    public class Menu
+    public static class Menu
     {
-        private ArbolGeneral ArbolPrincipal;
+        private static ArbolGeneral ArbolPrincipal;
 
         //"inicio" contiene la primer vista del programa, mostrando los modulos disponibles
-        public void inicio(ArbolGeneral enArbolGeneral)
+        public static void inicio(ArbolGeneral enArbolGeneral)
         {
-            this.ArbolPrincipal = enArbolGeneral;
+            ArbolPrincipal = enArbolGeneral;
             bool salirMenu = false;
             do
             {
@@ -49,7 +49,6 @@ namespace SNDT
 
             } while (!salirMenu);
         }
-
         #region Metodos
         public static void menuMostrarTitulo(string espacio)
         {
@@ -58,7 +57,7 @@ namespace SNDT
                           "\n[=> Menu > " + espacio + "\n\n");
         }
 
-        public static char obtenerRespusta()
+        public static char repetirOperacion()
         {
             try
             {
@@ -71,7 +70,6 @@ namespace SNDT
                 Console.ReadKey();
                 return 'n';
             }
-
         }
         public static void estadoDeInsercion(bool estado)
         {
@@ -86,23 +84,7 @@ namespace SNDT
                 Thread.Sleep(800);
             }
         }
-        public static char repetirOperacion()
-        {
-            try
-            {
-                Console.Write("¿Desea respetir proceso? (s/n): ");
-                return Convert.ToChar(Console.ReadLine());
-            }
-            catch (Exception)
-            {
-                Console.Write("Opcion no valida, presione una tecla para salir...");
-                Console.ReadKey();
-                return 'n';
-            }
-
-        }
         #endregion
-
     }
 }
 

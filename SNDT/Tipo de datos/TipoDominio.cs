@@ -8,12 +8,10 @@ namespace SNDT
 {
     public class TipoDominio : TipoDominioAbstracto
     {
-
         public TipoDominio() { }
         public TipoDominio(string n)
         {
             this.Nombre = n;
         }
-
     }
 }

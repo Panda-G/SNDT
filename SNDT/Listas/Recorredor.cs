@@ -21,7 +21,7 @@ namespace SNDT
         {
             this.actual = 0;
         }
-        public object elemento()
+        public object obtenerElemento()
         {
             return this.lista.obtenerElemento(this.actual);
         }
@@ -29,7 +29,7 @@ namespace SNDT
         {
             this.actual += 1;
         }
-        public bool fin()
+        public bool esFin()
         {
             if (!(actual <= lista.obtenerTamanio() - 1))
             {

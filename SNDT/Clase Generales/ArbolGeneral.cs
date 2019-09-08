@@ -41,7 +41,7 @@ namespace SNDT
         }
         public void agregarHijo(ArbolGeneral hijo)
         {
-            this.Raiz.ListaHijos.agregar(hijo, Raiz.ListaHijos.obtenerTamanio());
+            this.Raiz.ListaHijos.agregarElementoEn(hijo, Raiz.ListaHijos.obtenerTamanio());
         }
 
         public void eliminarHijo(ArbolGeneral hijo)
@@ -73,9 +73,9 @@ namespace SNDT
             {
                 Recorredor recorrer = this.getListaHijos().getRecorredor();
                 recorrer.comenzar();
-                while (recorrer.fin() == false)
+                while (recorrer.esFin() == false)
                 {
-                    ((ArbolGeneral)recorrer.elemento()).recorridoPreorden();
+                    ((ArbolGeneral)recorrer.obtenerElemento()).recorridoPreorden();
                     recorrer.proximo();
                 }
             }

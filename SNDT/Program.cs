@@ -38,11 +38,10 @@ namespace SNDT
             //}
 
             //Crea instancia del Arbol Principal que se usa durante todo el programac
-            ArbolGeneral arbolGeneral = new ArbolGeneral("Dominio");
-            arbolGeneral.NivelNodo = 0;
-            Menu objMenu = new Menu();
+            ArbolGeneral arbol = new ArbolGeneral("Dominio");
+            arbol.NivelNodo = 0;
             //Pasamos el objeto Arbol creado a una clase "Menu"
-            objMenu.inicio(arbolGeneral);
+            Menu.inicio(arbol);
             Console.ReadKey();
         }
     }

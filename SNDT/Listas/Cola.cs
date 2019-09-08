@@ -14,7 +14,7 @@ namespace SNDT
 
         public int CantidadElementos { get => cantidadElementos; set => cantidadElementos = value; }
 
-        public void encolar(T elem)
+        public void encolarElemento(T elem)
         {
             this.datos.Add(elem);
             ++this.CantidadElementos;

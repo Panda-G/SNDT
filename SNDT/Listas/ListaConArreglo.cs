@@ -24,7 +24,7 @@ namespace SNDT
             return Datos[pos];
         }
         
-        public override void agregar(object elem, int pos)
+        public override void agregarElementoEn(object elem, int pos)
         {
             if (pos == Datos.Count)
             {
