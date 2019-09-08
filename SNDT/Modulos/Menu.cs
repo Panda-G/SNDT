@@ -19,7 +19,7 @@ namespace SNDT
             do
             {
                 #region Menu
-                menuMostrarTitulo(" ");
+                mostrarTitulo(" ");
                 Console.WriteLine("\t1. Modulo de Administracion\n" +
                                   "\t2. Modulo de Consultas\n" +
                                   "\t3. Salir\n");
@@ -44,13 +44,13 @@ namespace SNDT
                         Console.WriteLine("Opcion invalida");
                         Console.ReadKey();
                         break;
-                } 
+                }
                 #endregion
 
             } while (!salirMenu);
         }
         #region Metodos
-        public static void menuMostrarTitulo(string espacio)
+        public static void mostrarTitulo(string espacio)
         {
             Console.Clear();
             Console.Write("\n [  [ [Sistema de Nombres de Dominio Taxonómico (SNDT)] ]  ]\n " +
@@ -71,7 +71,7 @@ namespace SNDT
                 return 'n';
             }
         }
-        public static void estadoDeInsercion(bool estado)
+        public static void agregadoCorrecto(bool estado)
         {
             if (estado)
             {

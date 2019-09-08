@@ -23,7 +23,7 @@ namespace SNDT
                 do
                 {
                     #region  Menu.Consultas
-                    Menu.menuMostrarTitulo("Módulo de Consultas");
+                    Menu.mostrarTitulo("Módulo de Consultas");
                     Console.WriteLine("\t1. Ver datos de especie\n" +
                                       "\t2. Ingrese una Clase\n" +
                                       "\t3. Ingrese profundidad\n" +
@@ -40,7 +40,7 @@ namespace SNDT
                         case "1":
                             do
                             {
-                                Menu.menuMostrarTitulo("Módulo de Consultas > Datos Especie");
+                                Menu.mostrarTitulo("Módulo de Consultas > Datos Especie");
                                 Console.WriteLine("Ingrese el nombre de la Especie que desea conocer.\n");
                                 Console.Write(">Especie: "); string especieBusqueda = Console.ReadLine();
                                 //buscarCategoria29(this.arbolConsulta, especieBusqueda);
@@ -58,7 +58,7 @@ namespace SNDT
                         case "2":
                             do
                             {
-                                Menu.menuMostrarTitulo("Módulo de Consultas > Especies de Clase");
+                                Menu.mostrarTitulo("Módulo de Consultas > Especies de Clase");
                                 Console.WriteLine(">Clase: "); string claseBusqueda = Console.ReadLine();
                                 if (!existeClase(arbolConsulta, claseBusqueda))
                                 {
@@ -76,7 +76,7 @@ namespace SNDT
                             do
                             {
                                 int[] numeros = { 1, 2, 3, 4, 5, 6, 7 };
-                                Menu.menuMostrarTitulo("Módulo de Consultas > Categorias por Profundidad");
+                                Menu.mostrarTitulo("Módulo de Consultas > Categorias por Profundidad");
                                 Console.WriteLine(">Profundidad: ");
                                 try
                                 {

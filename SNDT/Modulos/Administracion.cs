@@ -15,11 +15,11 @@ namespace SNDT
         {
             arbolAdmin = enArbol;
 
-            bool salirMenuAdmin = false;
+            bool salirAdministracion = false;
             do
             {
                 #region Menu.Administracion
-                Menu.menuMostrarTitulo("Módulo de Administración");
+                Menu.mostrarTitulo("Módulo de Administración");
                 Console.WriteLine("\t1. Ingresar nombre de dominio Taxonómico.\n" +
                                   "\t2. Ingresar nombre por cada Categoria Taxonómico.\n" +
                                   "\t3. Eliminar Especie.\n" +
@@ -30,22 +30,21 @@ namespace SNDT
                 #region Opciones
                 switch (opcion)
                 {
-                    #region 1- Ingresar cadena completa
+                    #region 1- Ingresar cadena completa en una linea
                     case "1":
                         do
                         {
-                            Menu.menuMostrarTitulo("Módulo de Administración > Dominio completo");
+                            Menu.mostrarTitulo("Módulo de Administración > Dominio completo");
                             Console.WriteLine("\tIngresar nombre de Dominio Taxonomico:\n");
 
                             string[] nombreDominio = Console.ReadLine().Split('.');
-                            Cola<string> objCola = new Cola<string>();
-                            if (Validar(objCola, nombreDominio))
+                            Cola<string> colaCategoria = new Cola<string>();
+                            if (Validar(colaCategoria, nombreDominio))
                             {
                                 int nivel = 0;
-                                arbolAdmin = insetarDominioArbol(enArbol, objCola, nivel);
+                                arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, nivel);
 
-                                Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
-                                Thread.Sleep(800);
+                                Menu.agregadoCorrecto(true);
                             }
                         } while (Menu.repetirOperacion() == 's');
                         break;
@@ -56,29 +55,27 @@ namespace SNDT
                         do
                         {
                             string[] categorias = new string[] { "Reino", "Filo", "Clase", "Orden", "Familia", "Genero", "Especie" };
-                            Cola<string> cola = new Cola<string>();
-                            bool cateValida = true;
-                            for (int i = 0; i < categorias.Count() && cateValida == true; i++)
+                            Cola<string> colaCategoria = new Cola<string>();
+                            bool esCorrecto = true;
+                            for (int i = 0; i < categorias.Count() && esCorrecto == true; i++)
                             {
-                                Menu.menuMostrarTitulo("Módulo de Administración > Por categoria");
+                                Menu.mostrarTitulo("Módulo de Administración > Por categoria");
                                 Console.WriteLine("\tIngresar nombre de Dominio Taxonomico\n ");
                                 Console.WriteLine(categorias[i] + ": ");
-                                string categoria = Console.ReadLine();
-                                if (categoria != "" && categoria != " ")
-                                    cola.encolarElemento(categoria);
+                                string nuevaCategoria = Console.ReadLine();
+                                if (nuevaCategoria != "" && nuevaCategoria != " ")
+                                    colaCategoria.encolarElemento(nuevaCategoria);
                                 else
                                 {
-                                    Console.WriteLine("\nCategoria(s) ingresada(s) no validas.");
-                                    cateValida = false;
+                                    Menu.agregadoCorrecto(true);
                                 }
                             }
-                            if (cateValida == true)
+                            if (esCorrecto == true)
                             {
                                 int nivel = 0;
-                                arbolAdmin = insetarDominioArbol(enArbol, cola, nivel);
+                                arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, nivel);
 
-                                Console.Write("\n\nDetalle:\tEl dominio Taxonomico se ha ingresado correctamente.\n");
-                                Thread.Sleep(800);
+                                Menu.agregadoCorrecto(true);
                             }
                         } while (Menu.repetirOperacion() == 's');
                         break;
@@ -88,24 +85,24 @@ namespace SNDT
                     case "3":
                         do
                         {
-                            Menu.menuMostrarTitulo(" Eliminar 'Especie'");
+                            Menu.mostrarTitulo(" Eliminar 'Especie'");
                             Console.Write("\nPara eliminar una Especie, debe ingresar su dominio taxonomico correspondiente:\n");
 
-                            string[] nDominio = Console.ReadLine().Split('.');
-                            Cola<string> cola = new Cola<string>();
-                            if (Validar(cola, nDominio))
+                            string[] nombreDominio = Console.ReadLine().Split('.');
+                            Cola<string> colaCategoria = new Cola<string>();
+                            if (Validar(colaCategoria, nombreDominio))
                             {
                                 if (arbolAdmin.getListaHijos().obtenerTamanio() == 0)
                                 {
                                     Console.WriteLine("El arbol no pose datos.");
                                 }
-                                else if (eliminarRecorrido(arbolAdmin, nDominio))
+                                else if (eliminarRecorrido(arbolAdmin, nombreDominio))
                                 {
-                                    Console.WriteLine("Especie '[{0}]' eliminada con exito", nDominio[6]);
+                                    Console.WriteLine("Especie '[{0}]' eliminada con exito", nombreDominio[6]);
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Especie '{0}' no se encuentra en el Sistema.", nDominio[6]);
+                                    Console.WriteLine("Especie '{0}' no se encuentra en el Sistema.", nombreDominio[6]);
                                 }
                             }
                         } while (Menu.repetirOperacion() == 's');
@@ -113,7 +110,7 @@ namespace SNDT
                     #endregion
 
                     case "4":
-                        salirMenuAdmin = true;
+                        salirAdministracion = true;
                         Console.WriteLine("Regresando al Menu.");
                         Thread.Sleep(400);
                         break;
@@ -128,7 +125,7 @@ namespace SNDT
                 }
                 #endregion
 
-            } while (!salirMenuAdmin);
+            } while (!salirAdministracion);
         }
 
         #region Metodos
@@ -156,7 +153,7 @@ namespace SNDT
                 {
                     if (cola.obtenerCantidad() == 1)
                     {
-                        string[] especie = metIngresarDatosEspecie(cola.tope());
+                        string[] especie = solicitarEspecie(cola.tope());
                         ArbolGeneral arbolEspecie = new ArbolGeneral(cola.desencolar(), especie);
                         arbolEspecie.NivelNodo= 7;
                         arbol.agregarHijo(arbolEspecie);
@@ -164,13 +161,13 @@ namespace SNDT
                     else
                     {
                         arbol.agregarHijo(new ArbolGeneral(cola.desencolar()));
-                        Recorredor rec = arbol.getListaHijos().getRecorredor();
-                        rec.comenzar();
-                        while (!rec.esFin())
+                        Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+                        recorrerArbol.comenzar();
+                        while (!recorrerArbol.esFin())
                         {
-                            if (cola.obtenerAnterior() == (rec.obtenerElemento()).getDatoRaiz().Nombre)
-                                insetarDominioArbol(rec.obtenerElemento(), cola, ++nivel);
-                            rec.proximo();
+                            if (cola.obtenerAnterior() == (recorrerArbol.obtenerElemento()).getDatoRaiz().Nombre)
+                                insetarDominioArbol(recorrerArbol.obtenerElemento(), cola, ++nivel);
+                            recorrerArbol.proximo();
                         }
                     }
                 }
@@ -178,91 +175,91 @@ namespace SNDT
             return arbol;
         }
         //Cumple la funcion de solicitar los datos de la especie 
-        public static string[] metIngresarDatosEspecie(string inEspecie)
+        public static string[] solicitarEspecie(string especie)
         {
 
             #region Secccion Metabolismo
-            string opm = "0", opr = "0";
-            bool fin = false;
-            string[] especie = new string[2];
+            string seleccionMetabolismo = "0", seleccionReproduccion = "0";
+            bool esFin = false;
+            string[] especieDatos = new string[2];
             do
             {
-                Menu.menuMostrarTitulo("Modulo Administracion > Especie (Metabolismo) ");
+                Menu.mostrarTitulo("Modulo Administracion > Especie (Metabolismo) ");
                 Console.WriteLine("Elija opción correspondiente al Metabolismo de [{0}]\n " +
                                         "\t<1> Anabolico \n" +
-                                        "\t<2> Catabolico\n", inEspecie);
-                Console.Write("Opción: "); opm = Console.ReadLine();
-                switch (opm)
+                                        "\t<2> Catabolico\n", especie);
+                Console.Write("Opción: "); seleccionMetabolismo = Console.ReadLine();
+                switch (seleccionMetabolismo)
                 {
                     case "1":
-                        especie[0] = "Anabolico";
-                        fin = true;
+                        especieDatos[0] = "Anabolico";
+                        esFin = true;
                         break;
                     case "2":
-                        especie[0] = "Catabolico";
-                        fin = true;
+                        especieDatos[0] = "Catabolico";
+                        esFin = true;
                         break;
                     default:
                         Console.WriteLine("\nVolver a intentar.");
                         Console.ReadKey();
                         break;
                 }
-            } while (!fin);
+            } while (!esFin);
             #endregion
 
             #region  Seccion Reproduccion
-            fin = false;
+            esFin = false;
             do
             {
-                Menu.menuMostrarTitulo("Modulo Administracion > Especie (Reproduccion)");
+                Menu.mostrarTitulo("Modulo Administracion > Especie (Reproduccion)");
                 Console.WriteLine("Elija opción correspondiente al Metabolismo de [{0}]\n " +
                                         "\t<1> Asexual \n" +
-                                        "\t<2> Sexual\n", inEspecie);
-                Console.Write("Opción: "); opr = Console.ReadLine();
-                switch (opr)
+                                        "\t<2> Sexual\n", especie);
+                Console.Write("Opción: "); seleccionReproduccion = Console.ReadLine();
+                switch (seleccionReproduccion)
                 {
                     case "1":
-                        especie[1] = "Asexual";
-                        fin = true;
+                        especieDatos[1] = "Asexual";
+                        esFin = true;
                         break;
                     case "2":
-                        especie[1] = "Sexual";
-                        fin = true;
+                        especieDatos[1] = "Sexual";
+                        esFin = true;
                         break;
                     default:
                         Console.WriteLine("\nVolver a intentar.");
                         Console.ReadKey();
                         break;
                 }
-            } while (!fin);
+            } while (!esFin);
             #endregion
 
-            return especie;
+            return especieDatos;
 
         }
         //Eliminar la especie, indicada como parametro, del arbol
-        public static bool eliminarRecorrido(ArbolGeneral arbol, string[] inEspecie)
+        public static bool eliminarRecorrido(ArbolGeneral arbol, string[] especieDatos)
         {
             if (arbol.esHoja())
             {
-                if (arbol.getDatoRaiz().Nombre == inEspecie[6])
+                if (arbol.getDatoRaiz().Nombre == especieDatos[6])
                 {
-                    Console.WriteLine("Especie [{0}] encontrada.", inEspecie[6]);
+                    Console.WriteLine("Especie [{0}] encontrada.", especieDatos[6]);
                     return true;
                 }
                 return false;
             }
             else
             {
-                Recorredor rec = arbol.getListaHijos().getRecorredor();
-                rec.comenzar();
-                while (rec.esFin() == false)
+                Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+                recorrerArbol.comenzar();
+                while (recorrerArbol.esFin() == false)
                 {
-                    if (eliminarRecorrido(rec.obtenerElemento(), inEspecie))
+                    if (eliminarRecorrido(recorrerArbol.obtenerElemento(), especieDatos))
                     {
-                        arbol.eliminarHijo(rec.obtenerElemento());
+                        arbol.eliminarHijo(recorrerArbol.obtenerElemento());
                     }
-                    rec.proximo();
+                    recorrerArbol.proximo();
                 }
                 if (arbol.getListaHijos().obtenerTamanio() == 0)
                     return true;
@@ -270,18 +267,18 @@ namespace SNDT
             }
         }
         //Comprueba las categorias ingresadas
-        public static bool Validar(Cola<string> cola, string[] entrada)
+        public static bool Validar(Cola<string> cola, string[] entradaDominio)
         {
-            if (entrada.Count() == 7)
+            if (entradaDominio.Count() == 7)
             {
-                if (!(entrada.Contains("") || entrada.Contains(" ")))
+                if (!(entradaDominio.Contains("") || entradaDominio.Contains(" ")))
                 {
-                    foreach (var item in entrada) { cola.encolarElemento(item); }
+                    foreach (var item in entradaDominio) { cola.encolarElemento(item); }
                     return true;
                 }
                 Console.WriteLine("Categoria(s) ingresada(s) no validas."); return false;
             }
-            else if (entrada.Count() < 7)
+            else if (entradaDominio.Count() < 7)
             {
                 Console.WriteLine("\nFalta(n) Categoria(s), intentar nuevamente.");
                 Thread.Sleep(800); return false;
@@ -293,22 +290,20 @@ namespace SNDT
             }
         }
         //Retorna True, si la categoria ya existe, y False en caso contrario
-        public static bool existeCategoria(ArbolGeneral arbol, string inCola)
+        public static bool existeCategoria(ArbolGeneral arbol, string colaEntrada)
         {
-            Recorredor rec = arbol.getListaHijos().getRecorredor();
-            rec.comenzar();
-            while (!rec.esFin())
+            Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+            recorrerArbol.comenzar();
+            while (!recorrerArbol.esFin())
             {
-                if (rec.obtenerElemento().getDatoRaiz().Nombre == inCola)
+                if (recorrerArbol.obtenerElemento().getDatoRaiz().Nombre == colaEntrada)
                 {
                     return true;
                 }
-                rec.proximo();
+                recorrerArbol.proximo();
             }
             return false;
         }
-
         #endregion
-
     }
 }
