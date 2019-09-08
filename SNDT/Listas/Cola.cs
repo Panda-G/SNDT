@@ -8,7 +8,7 @@ namespace SNDT
 {
     public class Cola<T>
     {
-        private List<T> datos = new List<T>();
+        private readonly List<T> datos = new List<T>();
         private int cantidadElementos;
         private T anterior;
 
