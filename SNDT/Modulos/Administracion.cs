@@ -118,7 +118,7 @@ namespace SNDT
                         Thread.Sleep(400);
                         break;
                     case "5":
-                        arbolAdmin.recorridoPreorden();
+                        arbolAdmin.recorridoPreOrden();
                         Console.ReadKey();
                         break;
                     default:
@@ -144,10 +144,10 @@ namespace SNDT
                     rec.comenzar();
                     while (!rec.esFin())
                     {
-                        if (!cola.esVacia() && ((ArbolGeneral)rec.obtenerElemento()).getDatoRaiz().Nombre == cola.tope())
+                        if (!cola.esVacia() && rec.obtenerElemento().getDatoRaiz().Nombre == cola.tope())
                         {
                             cola.desencolar();
-                            insetarDominioArbol((ArbolGeneral)rec.obtenerElemento(), cola, ++nivel);
+                            insetarDominioArbol(rec.obtenerElemento(), cola, ++nivel);
                         }
                         rec.proximo();
                     }
@@ -168,8 +168,8 @@ namespace SNDT
                         rec.comenzar();
                         while (!rec.esFin())
                         {
-                            if (cola.obtenerAnterior() == ((ArbolGeneral)rec.obtenerElemento()).getDatoRaiz().Nombre)
-                                insetarDominioArbol((ArbolGeneral)rec.obtenerElemento(), cola, ++nivel);
+                            if (cola.obtenerAnterior() == (rec.obtenerElemento()).getDatoRaiz().Nombre)
+                                insetarDominioArbol(rec.obtenerElemento(), cola, ++nivel);
                             rec.proximo();
                         }
                     }
@@ -258,9 +258,9 @@ namespace SNDT
                 rec.comenzar();
                 while (rec.esFin() == false)
                 {
-                    if (eliminarRecorrido(((ArbolGeneral)rec.obtenerElemento()), inEspecie))
+                    if (eliminarRecorrido(rec.obtenerElemento(), inEspecie))
                     {
-                        arbol.eliminarHijo(((ArbolGeneral)rec.obtenerElemento()));
+                        arbol.eliminarHijo(rec.obtenerElemento());
                     }
                     rec.proximo();
                 }
@@ -299,7 +299,7 @@ namespace SNDT
             rec.comenzar();
             while (!rec.esFin())
             {
-                if (((ArbolGeneral)rec.obtenerElemento()).getDatoRaiz().Nombre == inCola)
+                if (rec.obtenerElemento().getDatoRaiz().Nombre == inCola)
                 {
                     return true;
                 }

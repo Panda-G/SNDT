@@ -129,7 +129,7 @@ namespace SNDT
                 rec.comenzar();
                 while (!rec.esFin())
                 {
-                    proCategorias((ArbolGeneral)rec.obtenerElemento(), profundidad);
+                    proCategorias(rec.obtenerElemento(), profundidad);
                     rec.proximo();
                 }
             }
@@ -157,7 +157,7 @@ namespace SNDT
                 rec.comenzar();
                 while (!rec.esFin())
                 {
-                    if (existeEspecie((ArbolGeneral)rec.obtenerElemento(), especieBusqueda))
+                    if (existeEspecie(rec.obtenerElemento(), especieBusqueda))
                         return true;
                     rec.proximo();
                 }
@@ -182,7 +182,7 @@ namespace SNDT
                 rec.comenzar();
                 while (!rec.esFin())
                 {
-                    if (existeClase((ArbolGeneral)rec.obtenerElemento(), enClase))
+                    if (existeClase(rec.obtenerElemento(), enClase))
                         return true;
                     rec.proximo();
                 }
@@ -208,7 +208,7 @@ namespace SNDT
                 rec.comenzar();
                 while (!rec.esFin())
                 {
-                    metBuscarEspecieClase((ArbolGeneral)rec.obtenerElemento());
+                    metBuscarEspecieClase(rec.obtenerElemento());
                     rec.proximo();
                 }
             }

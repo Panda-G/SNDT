@@ -30,7 +30,11 @@ namespace SNDT
 
         #region Metodos
         
-        //[getDatoRaiz] devuelve una clase [TipoDominioAbstracto], para obtener un string
+        /// <summary>
+        /// Permite obtener el 'Dato' de la 'Raiz'
+        /// </summary>
+        /// <remarks>Se desea obtener el nombre de tipo 'string' dentro de la Raiz</remarks>
+        /// <returns>TipoDominioAbstracto</returns>
         public TipoDominioAbstracto getDatoRaiz()
         {
             return this.Raiz.Dato;
@@ -57,7 +61,7 @@ namespace SNDT
             return this.Raiz != null && this.getListaHijos().obtenerTamanio() == 0;
         }
         //Imprime en pantalla el recorrido Pre-Orden del arbol del que es llamado
-        public void recorridoPreorden()
+        public void recorridoPreOrden()
         {
             Console.WriteLine(getDatoRaiz().Nombre);
             if (esHoja())
@@ -75,7 +79,7 @@ namespace SNDT
                 recorrer.comenzar();
                 while (recorrer.esFin() == false)
                 {
-                    ((ArbolGeneral)recorrer.obtenerElemento()).recorridoPreorden();
+                    ((ArbolGeneral)recorrer.obtenerElemento()).recorridoPreOrden();
                     recorrer.proximo();
                 }
             }

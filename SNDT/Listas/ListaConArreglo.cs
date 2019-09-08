@@ -19,9 +19,9 @@ namespace SNDT
             inicial = 0;
             Datos = new ArrayList();
         }
-        public override object obtenerElemento(int pos)
+        public override ArbolGeneral obtenerElemento(int pos)
         {
-            return Datos[pos];
+            return (ArbolGeneral)Datos[pos];
         }
         
         public override void agregarElementoEn(object elem, int pos)

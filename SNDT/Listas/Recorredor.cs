@@ -21,7 +21,7 @@ namespace SNDT
         {
             this.actual = 0;
         }
-        public object obtenerElemento()
+        public ArbolGeneral obtenerElemento()
         {
             return this.lista.obtenerElemento(this.actual);
         }

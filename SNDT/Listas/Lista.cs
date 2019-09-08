@@ -10,17 +10,16 @@ namespace SNDT
     {
         protected int tamanio { get; set; }
 
-        public abstract object obtenerElemento(int pos);
+        public abstract ArbolGeneral obtenerElemento(int pos);
         public abstract void agregarElementoEn(object elem, int pos);
         public abstract void eliminar(int pos);
         public abstract bool esVacia();
         public abstract bool incluye(object elem);
-
         public abstract Recorredor getRecorredor();
 
         public int obtenerTamanio()
         {
-            return tamanio;
+            return this.tamanio;
         }
     }
 }
