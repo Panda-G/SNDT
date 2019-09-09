@@ -13,39 +13,42 @@ namespace SNDT
         private T anterior;
 
         public int CantidadElementos { get => cantidadElementos; set => cantidadElementos = value; }
-
+        
+        /* Agrega el objecto de parametro a [datosCola], la lista. 
+         * Incrementa en 1 [cantidadElementos]. */
         public void encolarElemento(T elem)
         {
             this.datosCola.Add(elem);
-            ++this.CantidadElementos;
+            CantidadElementos += 1;
         }
 
+        /* Almacena objeto en indice 0 en [anterior], elimina el elemento 
+         * de la [datosCola] y retorna [anterior]  
+           Decrementa en 1 [cantidadElementos]. */
         public T desencolar()
         {
             T temp = anterior = this.datosCola[0];
             this.datosCola.RemoveAt(0);
-            --this.CantidadElementos;
+            CantidadElementos -= 1;
             return temp;
         }
 
+        //Retorna [anterior].
         public T obtenerAnterior()
         {
             return anterior;
         }
 
+        //Retorna el primer elemento de [datosCola].
         public T tope()
         {
             return this.datosCola[0];
         }
 
+        //Responde a "¿Esta vacia la cola?", retornando TRUE si es verdad.
         public bool esVacia()
         {
-            return this.datosCola.Count == 0 && this.CantidadElementos == 0;
-        }
-
-        public int obtenerCantidad()
-        {
-            return this.CantidadElementos;
+            return this.CantidadElementos == 0;
         }
     }
 }

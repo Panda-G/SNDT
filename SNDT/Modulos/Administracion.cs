@@ -150,7 +150,7 @@ namespace SNDT
                 }
                 else
                 {
-                    if (cola.obtenerCantidad() == 1)
+                    if (cola.CantidadElementos == 1)
                     {
                         string[] especie = solicitarEspecie(cola.tope());
                         ArbolGeneral arbolEspecie = new ArbolGeneral(cola.desencolar(), especie) { NivelNodo = 7 };
