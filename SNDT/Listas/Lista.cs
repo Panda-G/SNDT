@@ -8,18 +8,12 @@ namespace SNDT
 {
     public abstract class Lista
     {
-        protected int tamanio { get; set; }
-
-        public abstract ArbolGeneral obtenerElemento(int pos);
-        public abstract void agregarElemento(object elem, int pos);
-        public abstract void eliminar(int pos);
+        public abstract ArbolGeneral obtenerElemento(int posicion);
+        public abstract void agregarElemento(ArbolGeneral elemento, int posicion);
+        public abstract void eliminar(int posicion);
         public abstract bool esVacia();
-        public abstract bool incluye(object elem);
+        public abstract bool incluye(ArbolGeneral elemento);
         public abstract Recorredor getRecorredor();
-
-        public int tamanioLista()
-        {
-            return this.tamanio;
-        }
+        public abstract int tamanioLista();
     }
 }

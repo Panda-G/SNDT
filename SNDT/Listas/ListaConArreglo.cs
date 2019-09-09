@@ -9,39 +9,32 @@ namespace SNDT
 {
     public class ListaConArreglo : Lista
     {
-        //private int punteroInicial;
-
         //lista de hijos
         private ArrayList hijos;
         public ArrayList Hijos { get => hijos; set => hijos = value; }
 
-
         public ListaConArreglo()
         {
-            //this.punteroInicial = 0;
             Hijos = new ArrayList();
         }
-        public override ArbolGeneral obtenerElemento(int pos)
+        public override ArbolGeneral obtenerElemento(int posicion)
         {
-            return (ArbolGeneral)Hijos[pos];
+            return (ArbolGeneral)Hijos[posicion];
         }
-        public override void agregarElemento(object elem, int pos)
+        public override void agregarElemento(ArbolGeneral elemento, int posicion)
         {
-            if (pos == Hijos.Count)
+            if (posicion == Hijos.Count)
             {
-                Hijos.Add(elem);
-                tamanio += 1;
+                Hijos.Add(elemento);
             }
         }
-        public override void eliminar(int pos)
+        public override void eliminar(int posicion)
         {
-            Hijos.RemoveAt(pos);
-            tamanio -= 1;
+            Hijos.RemoveAt(posicion);
         }
-        public void eliminar(object elem)
+        public void eliminar(object elemento)
         {
-            this.Hijos.Remove(elem);
-            this.tamanio -= 1;
+            this.Hijos.Remove(elemento);
         }
         public override bool esVacia()
         {
@@ -59,6 +52,10 @@ namespace SNDT
                 }
             }
             return false;
+        }
+        public override int tamanioLista()
+        {
+            return Hijos.Count;
         }
         public override Recorredor getRecorredor()
         {
