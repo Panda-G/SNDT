@@ -8,12 +8,12 @@ namespace SNDT
 {
     public class Especie : TipoDominioAbstracto
     {
-        private DatosEspecie dato;
-        public DatosEspecie Dato { get => dato; set => dato = value; }
-        public Especie(string nombreEspecie, string datoMeta, string datoRepr)
+        private readonly DatosEspecie dato;
+        public DatosEspecie Dato { get => dato; }
+        public Especie(string nombreEspecie, string tipoMetabolismo, string tipoReproduccion)
         {
-            this.Nombre = nombreEspecie;
-            Dato = new DatosEspecie(datoMeta, datoRepr);
+            Nombre = nombreEspecie;
+            dato = new DatosEspecie(tipoMetabolismo, tipoReproduccion);
         }
     }
 

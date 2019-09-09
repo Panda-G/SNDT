@@ -8,10 +8,9 @@ namespace SNDT
 {
     public class TipoDominio : TipoDominioAbstracto
     {
-        public TipoDominio() { }
-        public TipoDominio(string n)
+        public TipoDominio(string entradaNombre)
         {
-            this.Nombre = n;
+            Nombre = entradaNombre;
         }
     }
 }
