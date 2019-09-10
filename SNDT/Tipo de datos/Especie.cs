@@ -15,7 +15,7 @@ namespace SNDT
             Nombre = nombreEspecie;
             dato = new DatosEspecie(tipoMetabolismo, tipoReproduccion);
         }
-    }
+    } 
 
     public class DatosEspecie
     {

@@ -38,10 +38,9 @@ namespace SNDT
                             Console.WriteLine("\tIngresar nombre de Dominio Taxonomico:\n");
 
                             string[] nombreDominio = Console.ReadLine().Split('.');
-                            Cola<string> colaCategoria = new Cola<string>();
-                            if (Validar(colaCategoria, nombreDominio))
+                            if (esCorrecto(nombreDominio))
                             {
-                                arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, 0);
+                                arbolAdmin = insetarDominioArbol(enArbol, nombreDominio, 1);
 
                                 Menu.agregadoCorrecto(true);
                             }
@@ -72,7 +71,7 @@ namespace SNDT
                             if (esCorrecto == true)
                             {
                                 int nivel = 0;
-                                arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, nivel);
+                                //arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, nivel);
 
                                 Menu.agregadoCorrecto(true);
                             }
@@ -88,8 +87,7 @@ namespace SNDT
                             Console.Write("\nPara eliminar una Especie, debe ingresar su dominio taxonomico correspondiente:\n");
 
                             string[] nombreDominio = Console.ReadLine().Split('.');
-                            Cola<string> colaCategoria = new Cola<string>();
-                            if (Validar(colaCategoria, nombreDominio))
+                            if (esCorrecto(nombreDominio))
                             {
                                 if (arbolAdmin.getListaHijos().tamanioLista() == 0)
                                 {
@@ -129,42 +127,42 @@ namespace SNDT
 
         #region Metodos
         //Se encargarga de insertar el dominio al arbol
-        public static ArbolGeneral insetarDominioArbol(ArbolGeneral arbol, Cola<string> cola, int nivel)
+        public static ArbolGeneral insetarDominioArbol(ArbolGeneral arbol, string[] dominio, int nivel)
         {
-            if (!cola.esVacia())
+            if (nivel <= 8)
             {
                 arbol.NivelNodo = nivel;
-                if (existeCategoria(arbol, cola.tope()))
+
+                if (existeCategoria(arbol, dominio[nivel - 1]))
                 {
-                    Recorredor rec = arbol.getListaHijos().getRecorredor();
-                    rec.comenzar();
-                    while (!rec.esFin())
+                    Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+                    recorrerArbol.comenzar();
+                    while (!recorrerArbol.esFin())
                     {
-                        if (!cola.esVacia() && rec.obtenerElemento().getDatoRaiz().Nombre == cola.tope())
+                        if (recorrerArbol.obtenerElemento().getDatoRaiz().Nombre == dominio[nivel - 1])
                         {
-                            cola.desencolar();
-                            insetarDominioArbol(rec.obtenerElemento(), cola, ++nivel);
+                            insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
                         }
-                        rec.proximo();
+                        recorrerArbol.proximo();
                     }
                 }
                 else
                 {
-                    if (cola.CantidadElementos == 1)
+                    if (nivel == 8)
                     {
-                        string[] especie = solicitarEspecie(cola.tope());
-                        ArbolGeneral arbolEspecie = new ArbolGeneral(cola.desencolar(), especie) { NivelNodo = 7 };
+                        string[] especie = solicitarEspecie(dominio[nivel - 1]);
+                        ArbolGeneral arbolEspecie = new ArbolGeneral(dominio[nivel - 1], especie) { NivelNodo = 7 };
                         arbol.agregarHijo(arbolEspecie);
                     }
                     else
                     {
-                        arbol.agregarHijo(new ArbolGeneral(cola.desencolar()));
+                        arbol.agregarHijo(new ArbolGeneral(dominio[nivel-1]));
                         Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
                         recorrerArbol.comenzar();
                         while (!recorrerArbol.esFin())
                         {
-                            if (cola.obtenerAnterior() == (recorrerArbol.obtenerElemento()).getDatoRaiz().Nombre)
-                                insetarDominioArbol(recorrerArbol.obtenerElemento(), cola, ++nivel);
+                            if (dominio[nivel - 1] == (recorrerArbol.obtenerElemento()).getDatoRaiz().Nombre)
+                                insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
                             recorrerArbol.proximo();
                         }
                     }
@@ -265,16 +263,16 @@ namespace SNDT
             }
         }
         //Comprueba las categorias ingresadas
-        public static bool Validar(Cola<string> cola, string[] entradaDominio)
+        public static bool esCorrecto(string[] entradaDominio)
         {
             if (entradaDominio.Count() == 7)
             {
                 if (!(entradaDominio.Contains("") || entradaDominio.Contains(" ")))
                 {
-                    foreach (var item in entradaDominio) { cola.encolarElemento(item); }
                     return true;
                 }
-                Console.WriteLine("Categoria(s) ingresada(s) no validas."); return false;
+                Console.WriteLine("Categoria(s) ingresada(s) no validas.");
+                return false;
             }
             else if (entradaDominio.Count() < 7)
             {
@@ -288,13 +286,13 @@ namespace SNDT
             }
         }
         //Retorna True, si la categoria ya existe, y False en caso contrario
-        public static bool existeCategoria(ArbolGeneral arbol, string colaEntrada)
+        public static bool existeCategoria(ArbolGeneral arbol, string nombre)
         {
             Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
             recorrerArbol.comenzar();
             while (!recorrerArbol.esFin())
             {
-                if (recorrerArbol.obtenerElemento().getDatoRaiz().Nombre == colaEntrada)
+                if (recorrerArbol.obtenerElemento().getDatoRaiz().Nombre == nombre)
                 {
                     return true;
                 }

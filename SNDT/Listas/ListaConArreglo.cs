@@ -28,11 +28,7 @@ namespace SNDT
                 Hijos.Add(elemento);
             }
         }
-        public override void eliminar(int posicion)
-        {
-            Hijos.RemoveAt(posicion);
-        }
-        public void eliminar(object elemento)
+        public override void eliminar(ArbolGeneral elemento)
         {
             this.Hijos.Remove(elemento);
         }
@@ -42,14 +38,12 @@ namespace SNDT
                 return true;
             return false;
         }
-        public override bool incluye(object elem)
+        public override bool incluye(string elemento)
         {
-            foreach (var item in Hijos)
+            foreach (ArbolGeneral hijo in Hijos)
             {
-                if (item.Equals(elem))
-                {
+                if (String.Equals(hijo.getDatoRaiz().Nombre, elemento))
                     return true;
-                }
             }
             return false;
         }

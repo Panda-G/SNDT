@@ -47,10 +47,10 @@ namespace SNDT
         {
             this.Raiz.ListaHijos.eliminar(hijo);
         }
-        public bool esVacio()
-        {
-            return this.Raiz == null;
-        }
+        //public bool esVacio()
+        //{
+        //    return this.Raiz == null;
+        //}
         public bool esHoja()
         {
             return this.Raiz != null && this.getListaHijos().tamanioLista() == 0;

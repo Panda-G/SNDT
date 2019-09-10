@@ -13,12 +13,12 @@ namespace SNDT
         private ListaConArreglo listaHijos;
         //Propiedades
         public TipoDominioAbstracto Dato { get => dato; set => dato = value; }
-        public ListaConArreglo ListaHijos { get => listaHijos; set => listaHijos = value; }
+        public ListaConArreglo ListaHijos { get => listaHijos;/* set => listaHijos = value; */}
         //Constructor
         public NodoGeneral(TipoDominioAbstracto nombreDato)
         {
-            this.Dato = nombreDato;
-            this.ListaHijos = new ListaConArreglo();
+            Dato = nombreDato;
+            listaHijos = new ListaConArreglo();
         }
     }
 }

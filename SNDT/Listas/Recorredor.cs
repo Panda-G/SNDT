@@ -9,12 +9,12 @@ namespace SNDT
 {
     public class Recorredor
     {
-        private readonly ListaConArreglo lista;
+        private readonly ArrayList lista;
         private int actual;
 
         public Recorredor(ArrayList enLista)
         {
-            this.lista = new ListaConArreglo { Hijos = enLista };
+            this.lista = new ArrayList(enLista);
         }
         public void comenzar()
         {
@@ -22,7 +22,7 @@ namespace SNDT
         }
         public ArbolGeneral obtenerElemento()
         {
-            return this.lista.obtenerElemento(this.actual);
+            return (ArbolGeneral)lista[actual];
         }
         public void proximo()
         {
@@ -30,7 +30,7 @@ namespace SNDT
         }
         public bool esFin()
         {
-            if (!(actual <= lista.tamanioLista() - 1))
+            if (!(actual <= lista.Count - 1))
             {
                 return true;
             }
