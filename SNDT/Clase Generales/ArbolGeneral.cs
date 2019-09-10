@@ -11,7 +11,7 @@ namespace SNDT
     {
         //Atributos de la clase [ArbolGeneral]
         private NodoGeneral raiz;
-        private int nivelNodo = 0;
+        private int nivelNodo;
         //Propiedades
         public NodoGeneral Raiz { get => raiz; set => raiz = value; }
         public int NivelNodo { get => nivelNodo; set => nivelNodo = value; }
