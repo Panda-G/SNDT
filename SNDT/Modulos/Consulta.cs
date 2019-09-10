@@ -121,11 +121,11 @@ namespace SNDT
         {
             if (enArbol.esHoja() || enArbol.NivelNodo == profundidad)
             {
-                Console.WriteLine("> {0}", enArbol.getDatoRaiz().Nombre);
+                Console.WriteLine("> {0}", enArbol.Raiz.Dato.Nombre);
             }
             else
             {
-                Recorredor rec = enArbol.getListaHijos().getRecorredor();
+                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
                 rec.comenzar();
                 while (!rec.esFin())
                 {
@@ -139,21 +139,22 @@ namespace SNDT
         {
             if (enArbol.esHoja())
             {
-                if (enArbol.getDatoRaiz().Nombre == especieBusqueda)
+                if (enArbol.Raiz.Dato.Nombre == especieBusqueda)
                 {
                     Console.WriteLine("Especie: {0} " +
                                       "\n\tMetabolismo: {1}" +
                                       "\n\tReproduccion: {2}",
                     especieBusqueda,
-                    ((Especie)enArbol.getDatoRaiz()).Dato.Metabolismo,
-                    ((Especie)enArbol.getDatoRaiz()).Dato.Reproduccion);
+                    ((Especie)enArbol.Raiz.Dato).Nombre);
+                    //((Especie)enArbol.getDatoRaiz()).Dato.Metabolismo,
+                    //((Especie)enArbol.getDatoRaiz()).Dato.Reproduccion);
                     return true;
                 }
                 return false;
             }
             else
             {
-                Recorredor rec = enArbol.getListaHijos().getRecorredor();
+                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
                 rec.comenzar();
                 while (!rec.esFin())
                 {
@@ -169,7 +170,7 @@ namespace SNDT
         {
             if (enArbol.NivelNodo == 3)
             {
-                if (enArbol.getDatoRaiz().Nombre == enClase)
+                if (enArbol.Raiz.Dato.Nombre == enClase)
                 {
                     metBuscarEspecieClase(enArbol);
                     return true;
@@ -178,7 +179,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.getListaHijos().getRecorredor();
+                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
                 rec.comenzar();
                 while (!rec.esFin())
                 {
@@ -197,14 +198,12 @@ namespace SNDT
                 Console.WriteLine("\n>Especie: ({0})" +
                                         "\n\t>Metabolismo: {1}" +
                                         "\n\t>Reproduccion: {2}",
-                  ((Especie)enArbol.getDatoRaiz()).Nombre,
-                  ((Especie)enArbol.getDatoRaiz()).Dato.Metabolismo,
-                  ((Especie)enArbol.getDatoRaiz()).Dato.Reproduccion);
+                  ((Especie)enArbol.Raiz.Dato).Dato.Metabolismo,
+                  ((Especie)enArbol.Raiz.Dato).Dato.Reproduccion);
             }
             else
             {
-                Recorredor rec = enArbol.getListaHijos().getRecorredor();
-                //Recorredor rec = new Recorredor(inArbol.getHijos());
+                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
                 rec.comenzar();
                 while (!rec.esFin())
                 {

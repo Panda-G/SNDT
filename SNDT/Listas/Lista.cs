@@ -10,7 +10,6 @@ namespace SNDT
     {
         public abstract ArbolGeneral obtenerElemento(int posicion);
         public abstract void agregarElemento(ArbolGeneral elemento, int posicion);
-        //public abstract void eliminar(int posicion);
         public abstract void eliminar(ArbolGeneral elemento);
         public abstract bool esVacia();
         public abstract bool incluye(string elemento);

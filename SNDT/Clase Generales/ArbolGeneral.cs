@@ -30,14 +30,6 @@ namespace SNDT
 
         #region Metodos
     
-        //public TipoDominioAbstracto getDatoRaiz()
-        //{
-        //    return this.Raiz.Dato;
-        //}
-        //public ListaConArreglo getListaHijos()
-        //{
-        //    return this.Raiz.ListaHijos;
-        //}
         public void agregarHijo(ArbolGeneral hijo)
         {
             this.Raiz.ListaHijos.agregarElemento(hijo, Raiz.ListaHijos.tamanioLista());
@@ -47,10 +39,7 @@ namespace SNDT
         {
             this.Raiz.ListaHijos.eliminar(hijo);
         }
-        //public bool esVacio()
-        //{
-        //    return this.Raiz == null;
-        //}
+        
         public bool esHoja()
         {
             return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista() == 0;

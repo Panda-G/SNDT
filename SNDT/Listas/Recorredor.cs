@@ -35,9 +35,6 @@ namespace SNDT
                 return true;
             }
             return false;
-            //if (this.lista.esVacia())
-            //    return true;
-            //return false;
         }
     }
 }
