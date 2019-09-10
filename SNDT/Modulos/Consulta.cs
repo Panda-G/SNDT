@@ -145,9 +145,8 @@ namespace SNDT
                                       "\n\tMetabolismo: {1}" +
                                       "\n\tReproduccion: {2}",
                     especieBusqueda,
-                    ((Especie)enArbol.Raiz.Dato).Nombre);
-                    //((Especie)enArbol.getDatoRaiz()).Dato.Metabolismo,
-                    //((Especie)enArbol.getDatoRaiz()).Dato.Reproduccion);
+                    ((Especie)enArbol.Raiz.Dato).Dato.Metabolismo,
+                    ((Especie)enArbol.Raiz.Dato).Dato.Reproduccion);
                     return true;
                 }
                 return false;
