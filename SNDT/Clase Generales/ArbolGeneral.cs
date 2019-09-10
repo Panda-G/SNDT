@@ -30,14 +30,14 @@ namespace SNDT
 
         #region Metodos
     
-        public TipoDominioAbstracto getDatoRaiz()
-        {
-            return this.Raiz.Dato;
-        }
-        public ListaConArreglo getListaHijos()
-        {
-            return this.Raiz.ListaHijos;
-        }
+        //public TipoDominioAbstracto getDatoRaiz()
+        //{
+        //    return this.Raiz.Dato;
+        //}
+        //public ListaConArreglo getListaHijos()
+        //{
+        //    return this.Raiz.ListaHijos;
+        //}
         public void agregarHijo(ArbolGeneral hijo)
         {
             this.Raiz.ListaHijos.agregarElemento(hijo, Raiz.ListaHijos.tamanioLista());
@@ -53,24 +53,24 @@ namespace SNDT
         //}
         public bool esHoja()
         {
-            return this.Raiz != null && this.getListaHijos().tamanioLista() == 0;
+            return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista() == 0;
         }
         //Imprime en pantalla el recorrido Pre-Orden del arbol del que es llamado
         public void recorridoPreOrden()
         {
-            Console.WriteLine(getDatoRaiz().Nombre);
+            Console.WriteLine(Raiz.Dato.Nombre);
             if (esHoja())
             {
                 if (this.NivelNodo != 0)
                 {
-                    Especie esp = (Especie)getDatoRaiz();
+                    Especie esp = (Especie)Raiz.Dato;
                     Console.Write(" \tMetabolismo: " + esp.Dato.Metabolismo + 
                                  "\n\tReproduccion: " + esp.Dato.Reproduccion + "\n");
                 }
             }
             else
             {
-                Recorredor recorrer = this.getListaHijos().getRecorredor();
+                Recorredor recorrer = Raiz.ListaHijos.getRecorredor();
                 recorrer.comenzar();
                 while (recorrer.esFin() == false)
                 {

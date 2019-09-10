@@ -89,7 +89,7 @@ namespace SNDT
                             string[] nombreDominio = Console.ReadLine().Split('.');
                             if (esCorrecto(nombreDominio))
                             {
-                                if (arbolAdmin.getListaHijos().tamanioLista() == 0)
+                                if (arbolAdmin.Raiz.ListaHijos.tamanioLista() == 0)
                                 {
                                     Console.WriteLine("El arbol no pose datos.");
                                 }
@@ -135,11 +135,11 @@ namespace SNDT
 
                 if (existeCategoria(arbol, dominio[nivel - 1]))
                 {
-                    Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+                    Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
                     recorrerArbol.comenzar();
                     while (!recorrerArbol.esFin())
                     {
-                        if (recorrerArbol.obtenerElemento().getDatoRaiz().Nombre == dominio[nivel - 1])
+                        if (recorrerArbol.obtenerElemento().Raiz.Dato.Nombre == dominio[nivel - 1])
                         {
                             insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
                         }
@@ -157,11 +157,11 @@ namespace SNDT
                     else
                     {
                         arbol.agregarHijo(new ArbolGeneral(dominio[nivel-1]));
-                        Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+                        Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
                         recorrerArbol.comenzar();
                         while (!recorrerArbol.esFin())
                         {
-                            if (dominio[nivel - 1] == (recorrerArbol.obtenerElemento()).getDatoRaiz().Nombre)
+                            if (dominio[nivel - 1] == (recorrerArbol.obtenerElemento()).Raiz.Dato.Nombre)
                                 insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
                             recorrerArbol.proximo();
                         }
@@ -238,7 +238,7 @@ namespace SNDT
         {
             if (arbol.esHoja())
             {
-                if (arbol.getDatoRaiz().Nombre == especieDatos[6])
+                if (arbol.Raiz.Dato.Nombre == especieDatos[6])
                 {
                     Console.WriteLine("Especie [{0}] encontrada.", especieDatos[6]);
                     return true;
@@ -247,7 +247,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+                Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
                 recorrerArbol.comenzar();
                 while (recorrerArbol.esFin() == false)
                 {
@@ -257,7 +257,7 @@ namespace SNDT
                     }
                     recorrerArbol.proximo();
                 }
-                if (arbol.getListaHijos().tamanioLista() == 0)
+                if (arbol.Raiz.ListaHijos.tamanioLista() == 0)
                     return true;
                 return false;
             }
@@ -288,11 +288,11 @@ namespace SNDT
         //Retorna True, si la categoria ya existe, y False en caso contrario
         public static bool existeCategoria(ArbolGeneral arbol, string nombre)
         {
-            Recorredor recorrerArbol = arbol.getListaHijos().getRecorredor();
+            Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
             recorrerArbol.comenzar();
             while (!recorrerArbol.esFin())
             {
-                if (recorrerArbol.obtenerElemento().getDatoRaiz().Nombre == nombre)
+                if (recorrerArbol.obtenerElemento().Raiz.Dato.Nombre == nombre)
                 {
                     return true;
                 }

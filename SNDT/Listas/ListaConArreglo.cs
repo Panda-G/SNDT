@@ -42,7 +42,7 @@ namespace SNDT
         {
             foreach (ArbolGeneral hijo in Hijos)
             {
-                if (String.Equals(hijo.getDatoRaiz().Nombre, elemento))
+                if (String.Equals(hijo.Raiz.Dato.Nombre, elemento))
                     return true;
             }
             return false;
