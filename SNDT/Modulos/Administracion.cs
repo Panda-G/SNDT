@@ -70,7 +70,6 @@ namespace SNDT
                             }
                             if (esCorrecto == true)
                             {
-                                int nivel = 0;
                                 //arbolAdmin = insetarDominioArbol(enArbol, colaCategoria, nivel);
 
                                 Menu.agregadoCorrecto(true);
