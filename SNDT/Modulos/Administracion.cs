@@ -131,20 +131,16 @@ namespace SNDT
             if (nivel <= 7)
             {
                 arbol.NivelNodo = nivel;
-                //Encontrar categoria y trabajar con esa ubicacion 
-                int encontrado = arbol.Raiz.ListaHijos.nuevoIncluye(dominio[nivel]);
-                if (encontrado != -1)
+                if (nivel == 7)
                 {
-                    insetarDominioArbol(arbol.Raiz.ListaHijos.obtenerElemento(encontrado), dominio, ++nivel);
+                    //siempre que este en el ultimo nivel pisara los datos de 'g' pidiendo los nuevo valores de especie
+                    arbol.agregarHijo(new ArbolGeneral(dominio[nivel - 1], solicitarEspecie(dominio[nivel - 1])) { NivelNodo = 7 });
                 }
                 else
                 {
-                    if (nivel == 8)
-                    {
-                        string[] especie = solicitarEspecie(dominio[nivel]);
-                        ArbolGeneral arbolEspecie = new ArbolGeneral(dominio[nivel], especie) { NivelNodo = 7 };
-                        arbol.agregarHijo(arbolEspecie);
-                    }
+                    int encontrado = arbol.Raiz.ListaHijos.nuevoIncluye(dominio[nivel]);
+                    if (encontrado != -1)
+                        insetarDominioArbol(arbol.Raiz.ListaHijos.obtenerElemento(encontrado), dominio, ++nivel);
                     else
                     {
                         arbol.agregarHijo(new ArbolGeneral(dominio[nivel]));
@@ -152,7 +148,7 @@ namespace SNDT
                         recorrerArbol.comenzar();
                         while (!recorrerArbol.esFin())
                         {
-                            if (dominio[nivel - 1] == (recorrerArbol.obtenerElemento()).Raiz.Dato.Nombre)
+                            if (dominio[nivel] == (recorrerArbol.obtenerElemento()).Raiz.Dato.Nombre)
                                 insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
                             recorrerArbol.proximo();
                         }

@@ -24,9 +24,7 @@ namespace SNDT
         public override void agregarElemento(ArbolGeneral elemento, int posicion)
         {
             if (posicion == Hijos.Count)
-            {
                 Hijos.Add(elemento);
-            }
         }
         public override void eliminar(ArbolGeneral elemento)
         {
@@ -40,8 +38,19 @@ namespace SNDT
         }
         public int nuevoIncluye(string elemento)
         {
-            //Retorna posicion del elemento en la lista, en caso contrario retorna -1
-            return Hijos.IndexOf(elemento);
+            try
+            {
+                foreach (ArbolGeneral arbolGeneral in Hijos)
+                {
+                    if (arbolGeneral.Raiz.Dato.Nombre == elemento)
+                        return Hijos.IndexOf(arbolGeneral);
+                }
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine("{0} Second exception caught.", e);
+            }
+            return -1;
         }
         public override bool incluye(string elemento)
         {
