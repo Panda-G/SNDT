@@ -40,7 +40,7 @@ namespace SNDT
                             string[] nombreDominio = Console.ReadLine().Split('.');
                             if (esCorrecto(nombreDominio))
                             {
-                                arbolAdmin = insetarDominioArbol(enArbol, nombreDominio, 1);
+                                arbolAdmin = insetarDominioArbol(enArbol, nombreDominio, 0);
 
                                 Menu.agregadoCorrecto(true);
                             }
@@ -128,34 +128,26 @@ namespace SNDT
         //Se encargarga de insertar el dominio al arbol
         public static ArbolGeneral insetarDominioArbol(ArbolGeneral arbol, string[] dominio, int nivel)
         {
-            if (nivel <= 8)
+            if (nivel <= 7)
             {
                 arbol.NivelNodo = nivel;
-
-                if (existeCategoria(arbol, dominio[nivel - 1]))
+                //Encontrar categoria y trabajar con esa ubicacion 
+                int encontrado = arbol.Raiz.ListaHijos.nuevoIncluye(dominio[nivel]);
+                if (encontrado != -1)
                 {
-                    Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
-                    recorrerArbol.comenzar();
-                    while (!recorrerArbol.esFin())
-                    {
-                        if (recorrerArbol.obtenerElemento().Raiz.Dato.Nombre == dominio[nivel - 1])
-                        {
-                            insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
-                        }
-                        recorrerArbol.proximo();
-                    }
+                    insetarDominioArbol(arbol.Raiz.ListaHijos.obtenerElemento(encontrado), dominio, ++nivel);
                 }
                 else
                 {
                     if (nivel == 8)
                     {
-                        string[] especie = solicitarEspecie(dominio[nivel - 1]);
-                        ArbolGeneral arbolEspecie = new ArbolGeneral(dominio[nivel - 1], especie) { NivelNodo = 7 };
+                        string[] especie = solicitarEspecie(dominio[nivel]);
+                        ArbolGeneral arbolEspecie = new ArbolGeneral(dominio[nivel], especie) { NivelNodo = 7 };
                         arbol.agregarHijo(arbolEspecie);
                     }
                     else
                     {
-                        arbol.agregarHijo(new ArbolGeneral(dominio[nivel-1]));
+                        arbol.agregarHijo(new ArbolGeneral(dominio[nivel]));
                         Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
                         recorrerArbol.comenzar();
                         while (!recorrerArbol.esFin())
@@ -169,6 +161,7 @@ namespace SNDT
             }
             return arbol;
         }
+
         //Cumple la funcion de solicitar los datos de la especie 
         public static string[] solicitarEspecie(string especie)
         {

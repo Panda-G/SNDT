@@ -11,11 +11,11 @@ namespace SNDT
     {
         //lista de hijos
         private ArrayList hijos;
-        public ArrayList Hijos { get => hijos; set => hijos = value; }
+        public ArrayList Hijos { get => hijos; }
 
         public ListaConArreglo()
         {
-            Hijos = new ArrayList();
+            this.hijos = new ArrayList();
         }
         public override ArbolGeneral obtenerElemento(int posicion)
         {
@@ -38,8 +38,14 @@ namespace SNDT
                 return true;
             return false;
         }
+        public int nuevoIncluye(string elemento)
+        {
+            //Retorna posicion del elemento en la lista, en caso contrario retorna -1
+            return Hijos.IndexOf(elemento);
+        }
         public override bool incluye(string elemento)
         {
+            //obtener pos del elemento
             foreach (ArbolGeneral hijo in Hijos)
             {
                 if (String.Equals(hijo.Raiz.Dato.Nombre, elemento))
