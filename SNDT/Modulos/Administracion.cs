@@ -273,21 +273,6 @@ namespace SNDT
                 Thread.Sleep(800); return false;
             }
         }
-        //Retorna True, si la categoria ya existe, y False en caso contrario
-        public static bool existeCategoria(ArbolGeneral arbol, string nombre)
-        {
-            Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
-            recorrerArbol.comenzar();
-            while (!recorrerArbol.esFin())
-            {
-                if (recorrerArbol.obtenerElemento().Raiz.Dato.Nombre == nombre)
-                {
-                    return true;
-                }
-                recorrerArbol.proximo();
-            }
-            return false;
-        }
         #endregion
     }
 }
