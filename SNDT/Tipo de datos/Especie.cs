@@ -8,6 +8,7 @@ namespace SNDT
 {
     public class Especie : TipoDominioAbstracto
     {
+
         private DatosEspecie dato;
         public DatosEspecie Dato { get => dato; }
         public Especie(string nombreEspecie, string tipoMetabolismo, string tipoReproduccion)
@@ -15,6 +16,7 @@ namespace SNDT
             Nombre = nombreEspecie;
             dato = new DatosEspecie(tipoMetabolismo, tipoReproduccion);
         }
+
     } 
     public class DatosEspecie
     {
@@ -28,5 +30,6 @@ namespace SNDT
             this.metabolismo = metabolismo;
             this.reproduccion = reproduccion;
         }
+
     }
 }

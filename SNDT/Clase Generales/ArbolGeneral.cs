@@ -13,33 +13,38 @@ namespace SNDT
         private NodoGeneral raiz;
         private int nivelNodo;
         //Propiedades
-        public NodoGeneral Raiz { get => raiz; set => raiz = value; }
+        public NodoGeneral Raiz { get => raiz; }
         public int NivelNodo { get => nivelNodo; set => nivelNodo = value; }
 
         #region Constructores
         public ArbolGeneral(string categoria)
         {
-            this.Raiz = new NodoGeneral(new TipoDominio(categoria));
+            this.raiz = new NodoGeneral(new TipoDominio(categoria));
         }
-        public ArbolGeneral (string categoria, string[] datoEspecie)
+        public ArbolGeneral(string categoria, string[] datoEspecie)
         {
             Especie categoriaEspecie = new Especie(categoria, datoEspecie[0], datoEspecie[1]);
-            this.Raiz = new NodoGeneral(categoriaEspecie);
+            this.raiz = new NodoGeneral(categoriaEspecie);
         }
         #endregion
 
         #region Metodos
-    
+
         public void agregarHijo(ArbolGeneral hijo)
         {
-            this.Raiz.ListaHijos.agregarElemento(hijo, Raiz.ListaHijos.tamanioLista());
+            //si existe hijo, no agregar
+
+            if (Raiz.ListaHijos.nuevoIncluye(hijo.Raiz.Dato.Nombre) == -1)
+                this.Raiz.ListaHijos.agregarElemento(hijo, Raiz.ListaHijos.tamanioLista());
         }
 
         public void eliminarHijo(ArbolGeneral hijo)
         {
-            this.Raiz.ListaHijos.eliminar(hijo);
+            //si no existe, no eliminar nada
+            if (Raiz.ListaHijos.nuevoIncluye(hijo.Raiz.Dato.Nombre) == -1)
+                this.Raiz.ListaHijos.eliminar(hijo);
         }
-        
+
         public bool esHoja()
         {
             return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista() == 0;
@@ -53,7 +58,7 @@ namespace SNDT
                 if (this.NivelNodo != 0)
                 {
                     Especie esp = (Especie)Raiz.Dato;
-                    Console.Write(" \tMetabolismo: " + esp.Dato.Metabolismo + 
+                    Console.Write(" \tMetabolismo: " + esp.Dato.Metabolismo +
                                  "\n\tReproduccion: " + esp.Dato.Reproduccion + "\n");
                 }
             }

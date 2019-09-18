@@ -133,25 +133,20 @@ namespace SNDT
                 arbol.NivelNodo = nivel;
                 if (nivel == 7)
                 {
-                    //siempre que este en el ultimo nivel pisara los datos de 'g' pidiendo los nuevo valores de especie
-                    arbol.agregarHijo(new ArbolGeneral(dominio[nivel - 1], solicitarEspecie(dominio[nivel - 1])) { NivelNodo = 7 });
+                    //ARREGLAR --> siempre que este en el ultimo nivel pisara los datos de 'g' pidiendo los nuevo valores de especie
+                    //AGREGAR --> lista de hijo tiene que ser nula. porque en el ultimo nivel no posee hijos
+                    arbol.agregarHijo(new ArbolGeneral(dominio[6], solicitarEspecie(dominio[6])){ NivelNodo = nivel }); 
                 }
                 else
                 {
-                    int encontrado = arbol.Raiz.ListaHijos.nuevoIncluye(dominio[nivel]);
-                    if (encontrado != -1)
-                        insetarDominioArbol(arbol.Raiz.ListaHijos.obtenerElemento(encontrado), dominio, ++nivel);
-                    else
+                    arbol.agregarHijo(new ArbolGeneral(dominio[nivel]));
+                    Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
+                    recorrerArbol.comenzar();
+                    while (!recorrerArbol.esFin())
                     {
-                        arbol.agregarHijo(new ArbolGeneral(dominio[nivel]));
-                        Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
-                        recorrerArbol.comenzar();
-                        while (!recorrerArbol.esFin())
-                        {
-                            if (dominio[nivel] == (recorrerArbol.obtenerElemento()).Raiz.Dato.Nombre)
-                                insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
-                            recorrerArbol.proximo();
-                        }
+                        if (dominio[nivel] == (recorrerArbol.obtenerElemento()).Raiz.Dato.Nombre)
+                            insetarDominioArbol(recorrerArbol.obtenerElemento(), dominio, ++nivel);
+                        recorrerArbol.proximo();
                     }
                 }
             }

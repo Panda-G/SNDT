@@ -40,6 +40,7 @@ namespace SNDT
         {
             try
             {
+                //esta vacia la lista? no. entonces entra foreach
                 foreach (ArbolGeneral arbolGeneral in Hijos)
                 {
                     if (arbolGeneral.Raiz.Dato.Nombre == elemento)

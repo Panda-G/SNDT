@@ -30,6 +30,7 @@ namespace SNDT
         }
         public bool esFin()
         {
+            //Si actual es meno o igual a la ultima posicion de la lista
             if (!(actual <= lista.Count - 1))
             {
                 return true;
