@@ -16,18 +16,9 @@ namespace SNDT
         {
             this.lista = new ArrayList(enLista);
         }
-        public void comenzar()
-        {
-            this.actual = 0;
-        }
-        public ArbolGeneral obtenerElemento()
-        {
-            return (ArbolGeneral)lista[actual];
-        }
-        public void proximo()
-        {
-            this.actual += 1;
-        }
+        public void comenzar() => this.actual = 0;
+        public ArbolGeneral obtenerElemento() => (ArbolGeneral)lista[actual];
+        public void proximo() => this.actual += 1;
         public bool esFin()
         {
             //Si actual es meno o igual a la ultima posicion de la lista

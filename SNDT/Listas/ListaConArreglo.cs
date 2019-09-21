@@ -63,13 +63,7 @@ namespace SNDT
             }
             return false;
         }
-        public override int tamanioLista()
-        {
-            return Hijos.Count;
-        }
-        public override Recorredor getRecorredor()
-        {
-            return new Recorredor(Hijos);
-        }
+        public override int tamanioLista => Hijos.Count;
+        public override Recorredor Recorredor => new Recorredor(Hijos);
     }
 }

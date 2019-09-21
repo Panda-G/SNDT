@@ -13,7 +13,7 @@ namespace SNDT
         public abstract void eliminar(ArbolGeneral elemento);
         public abstract bool esVacia();
         public abstract bool incluye(string elemento);
-        public abstract Recorredor getRecorredor();
-        public abstract int tamanioLista();
+        public abstract Recorredor Recorredor { get; }
+        public abstract int tamanioLista { get; }
     }
 }

@@ -125,7 +125,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
+                Recorredor rec = enArbol.Raiz.ListaHijos.Recorredor;
                 rec.comenzar();
                 while (!rec.esFin())
                 {
@@ -153,7 +153,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
+                Recorredor rec = enArbol.Raiz.ListaHijos.Recorredor;
                 rec.comenzar();
                 while (!rec.esFin())
                 {
@@ -178,7 +178,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
+                Recorredor rec = enArbol.Raiz.ListaHijos.Recorredor;
                 rec.comenzar();
                 while (!rec.esFin())
                 {
@@ -202,7 +202,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor rec = enArbol.Raiz.ListaHijos.getRecorredor();
+                Recorredor rec = enArbol.Raiz.ListaHijos.Recorredor;
                 rec.comenzar();
                 while (!rec.esFin())
                 {

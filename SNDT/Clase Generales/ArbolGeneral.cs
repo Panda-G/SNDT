@@ -24,7 +24,7 @@ namespace SNDT
         public ArbolGeneral(string categoria, string[] datoEspecie)
         {
             Especie categoriaEspecie = new Especie(categoria, datoEspecie[0], datoEspecie[1]);
-            this.raiz = new NodoGeneral(categoriaEspecie);
+            this.raiz = new NodoGeneral(categoriaEspecie) { ListaHijos = null };
         }
         #endregion
 
@@ -32,23 +32,21 @@ namespace SNDT
 
         public void agregarHijo(ArbolGeneral hijo)
         {
-            //si existe hijo, no agregar
-
             if (Raiz.ListaHijos.nuevoIncluye(hijo.Raiz.Dato.Nombre) == -1)
-                this.Raiz.ListaHijos.agregarElemento(hijo, Raiz.ListaHijos.tamanioLista());
+                this.Raiz.ListaHijos.agregarElemento(hijo, Raiz.ListaHijos.tamanioLista);
         }
 
         public void eliminarHijo(ArbolGeneral hijo)
         {
-            //si no existe, no eliminar nada
             if (Raiz.ListaHijos.nuevoIncluye(hijo.Raiz.Dato.Nombre) == -1)
                 this.Raiz.ListaHijos.eliminar(hijo);
         }
 
         public bool esHoja()
         {
-            return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista() == 0;
+            return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista== 0;
         }
+
         //Imprime en pantalla el recorrido Pre-Orden del arbol del que es llamado
         public void recorridoPreOrden()
         {
@@ -64,7 +62,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor recorrer = Raiz.ListaHijos.getRecorredor();
+                Recorredor recorrer = Raiz.ListaHijos.Recorredor;
                 recorrer.comenzar();
                 while (recorrer.esFin() == false)
                 {

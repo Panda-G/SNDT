@@ -34,21 +34,12 @@ namespace SNDT
         }
 
         //Retorna [anterior].
-        public T obtenerAnterior()
-        {
-            return anterior;
-        }
+        public T obtenerAnterior() => anterior;
 
         //Retorna el primer elemento de [datosCola].
-        public T tope()
-        {
-            return this.datosCola[0];
-        }
+        public T tope() => this.datosCola[0];
 
         //Responde a "¿Esta vacia la cola?", retornando TRUE si es verdad.
-        public bool esVacia()
-        {
-            return this.CantidadElementos == 0;
-        }
+        public bool esVacia() => this.CantidadElementos == 0;
     }
 }

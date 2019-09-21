@@ -14,7 +14,6 @@ namespace SNDT
         public static void inicioAdmin(ArbolGeneral enArbol)
         {
             arbolAdmin = enArbol;
-
             bool salirAdministracion = false;
             do
             {
@@ -88,7 +87,7 @@ namespace SNDT
                             string[] nombreDominio = Console.ReadLine().Split('.');
                             if (esCorrecto(nombreDominio))
                             {
-                                if (arbolAdmin.Raiz.ListaHijos.tamanioLista() == 0)
+                                if (arbolAdmin.Raiz.ListaHijos.tamanioLista== 0)
                                 {
                                     Console.WriteLine("El arbol no pose datos.");
                                 }
@@ -133,14 +132,13 @@ namespace SNDT
                 arbol.NivelNodo = nivel;
                 if (nivel == 7)
                 {
-                    //ARREGLAR --> siempre que este en el ultimo nivel pisara los datos de 'g' pidiendo los nuevo valores de especie
-                    //AGREGAR --> lista de hijo tiene que ser nula. porque en el ultimo nivel no posee hijos
-                    arbol.agregarHijo(new ArbolGeneral(dominio[6], solicitarEspecie(dominio[6])){ NivelNodo = nivel }); 
+                    if (arbol.Raiz.ListaHijos.nuevoIncluye(dominio[6]) == -1)
+                        arbol.agregarHijo(new ArbolGeneral(dominio[6], solicitarEspecie(dominio[6])) { NivelNodo = nivel }); ;
                 }
                 else
                 {
                     arbol.agregarHijo(new ArbolGeneral(dominio[nivel]));
-                    Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
+                    Recorredor recorrerArbol = arbol.Raiz.ListaHijos.Recorredor;
                     recorrerArbol.comenzar();
                     while (!recorrerArbol.esFin())
                     {
@@ -230,7 +228,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor recorrerArbol = arbol.Raiz.ListaHijos.getRecorredor();
+                Recorredor recorrerArbol = arbol.Raiz.ListaHijos.Recorredor;
                 recorrerArbol.comenzar();
                 while (recorrerArbol.esFin() == false)
                 {
@@ -240,7 +238,7 @@ namespace SNDT
                     }
                     recorrerArbol.proximo();
                 }
-                if (arbol.Raiz.ListaHijos.tamanioLista() == 0)
+                if (arbol.Raiz.ListaHijos.tamanioLista== 0)
                     return true;
                 return false;
             }
