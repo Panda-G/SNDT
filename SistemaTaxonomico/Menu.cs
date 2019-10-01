@@ -91,5 +91,38 @@ namespace SistemaTaxonomico
             //..
             hideSubMenu();
         }
+
+        bool dragging = false;
+        int xOffset = 0;
+        int yOffset = 0;
+        private void metodoMouseDown()
+        {
+            dragging = true;
+
+            xOffset = Cursor.Position.X - this.Location.X;
+            yOffset = Cursor.Position.Y - this.Location.Y;
+        }
+        private void metodoMouseMove()
+        {
+            if (dragging)
+            {
+                this.Location = new Point(Cursor.Position.X - xOffset, Cursor.Position.Y - yOffset);
+                this.Update();
+            }
+        }
+        private void PnlLogo_MouseDown(object sender, MouseEventArgs e)
+        {
+            metodoMouseDown();
+        }
+
+        private void PnlLogo_MouseMove(object sender, MouseEventArgs e)
+        {
+            metodoMouseMove();
+        }
+
+        private void PnlLogo_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
     }
 }
