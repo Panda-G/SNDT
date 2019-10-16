@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace SNDT
 {
@@ -13,7 +9,7 @@ namespace SNDT
         private T anterior;
 
         public int CantidadElementos { get => cantidadElementos; set => cantidadElementos = value; }
-        
+
         /* Agrega el objecto de parametro a [datosCola], la lista. 
          * Incrementa en 1 [cantidadElementos]. */
         public void encolarElemento(T elem)

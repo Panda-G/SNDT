@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
-using System.Collections;
 
 namespace SNDT
 {
@@ -87,7 +83,7 @@ namespace SNDT
                             string[] nombreDominio = Console.ReadLine().Split('.');
                             if (esCorrecto(nombreDominio))
                             {
-                                if (arbolAdmin.Raiz.ListaHijos.tamanioLista== 0)
+                                if (arbolAdmin.Raiz.ListaHijos.tamanioLista == 0)
                                 {
                                     Console.WriteLine("El arbol no pose datos.");
                                 }
@@ -238,7 +234,7 @@ namespace SNDT
                     }
                     recorrerArbol.proximo();
                 }
-                if (arbol.Raiz.ListaHijos.tamanioLista== 0)
+                if (arbol.Raiz.ListaHijos.tamanioLista == 0)
                     return true;
                 return false;
             }

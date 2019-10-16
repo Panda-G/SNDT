@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
 
 namespace SNDT
 {
@@ -13,8 +8,8 @@ namespace SNDT
         private NodoGeneral raiz;
         private int nivelNodo;
         //Propiedades
-        public NodoGeneral Raiz { get => raiz; }
-        public int NivelNodo { get => nivelNodo; set => nivelNodo = value; }
+        public NodoGeneral Raiz { get => this.raiz; }
+        public int NivelNodo { get => this.nivelNodo; set => this.nivelNodo = value; }
 
         #region Constructores
         public ArbolGeneral(string categoria)
@@ -44,7 +39,7 @@ namespace SNDT
 
         public bool esHoja()
         {
-            return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista== 0;
+            return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista == 0;
         }
 
         //Imprime en pantalla el recorrido Pre-Orden del arbol del que es llamado

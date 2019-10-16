@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SNDT
+﻿namespace SNDT
 {
     public class Especie : TipoDominioAbstracto
     {
@@ -14,17 +8,17 @@ namespace SNDT
         public Especie(string nombreEspecie, string tipoMetabolismo, string tipoReproduccion)
         {
             Nombre = nombreEspecie;
-            dato = new DatosEspecie(tipoMetabolismo, tipoReproduccion);
+            this.dato = new DatosEspecie(tipoMetabolismo, tipoReproduccion);
         }
 
-    } 
+    }
     public class DatosEspecie
     {
         private readonly string metabolismo;
         private readonly string reproduccion;
 
-        public string Metabolismo { get => metabolismo; }
-        public string Reproduccion { get => reproduccion; }
+        public string Metabolismo { get => this.metabolismo; }
+        public string Reproduccion { get => this.reproduccion; }
         public DatosEspecie(string metabolismo, string reproduccion)
         {
             this.metabolismo = metabolismo;

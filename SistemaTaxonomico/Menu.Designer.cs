@@ -70,7 +70,7 @@
             this.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAyuda.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAyuda.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAyuda.Location = new System.Drawing.Point(0, 434);
+            this.btnAyuda.Location = new System.Drawing.Point(0, 430);
             this.btnAyuda.Name = "btnAyuda";
             this.btnAyuda.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnAyuda.Size = new System.Drawing.Size(250, 45);
@@ -87,9 +87,9 @@
             this.pnlConsulta.Controls.Add(this.btnEspecieClase);
             this.pnlConsulta.Controls.Add(this.btnVerEspecie);
             this.pnlConsulta.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlConsulta.Location = new System.Drawing.Point(0, 312);
+            this.pnlConsulta.Location = new System.Drawing.Point(0, 310);
             this.pnlConsulta.Name = "pnlConsulta";
-            this.pnlConsulta.Size = new System.Drawing.Size(250, 122);
+            this.pnlConsulta.Size = new System.Drawing.Size(250, 120);
             this.pnlConsulta.TabIndex = 4;
             // 
             // btnCateProfundidad
@@ -154,7 +154,7 @@
             this.btnConsuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConsuta.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConsuta.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnConsuta.Location = new System.Drawing.Point(0, 267);
+            this.btnConsuta.Location = new System.Drawing.Point(0, 265);
             this.btnConsuta.Name = "btnConsuta";
             this.btnConsuta.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnConsuta.Size = new System.Drawing.Size(250, 45);
@@ -173,7 +173,7 @@
             this.pnlAdmin.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAdmin.Location = new System.Drawing.Point(0, 145);
             this.pnlAdmin.Name = "pnlAdmin";
-            this.pnlAdmin.Size = new System.Drawing.Size(250, 122);
+            this.pnlAdmin.Size = new System.Drawing.Size(250, 120);
             this.pnlAdmin.TabIndex = 2;
             // 
             // btnEliminarEspecie

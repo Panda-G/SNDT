@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SNDT
+﻿namespace SNDT
 {
     public class NodoGeneral
     {
@@ -12,13 +6,13 @@ namespace SNDT
         private TipoDominioAbstracto dato;
         private ListaConArreglo listaHijos;
         //Propiedades
-        public TipoDominioAbstracto Dato { get => dato; }
-        public ListaConArreglo ListaHijos { get => listaHijos; set => listaHijos = value; }
+        public TipoDominioAbstracto Dato { get => this.dato; }
+        public ListaConArreglo ListaHijos { get => this.listaHijos; set => this.listaHijos = value; }
         //Constructor
         public NodoGeneral(TipoDominioAbstracto nombreDato)
         {
-            dato = nombreDato;
-            listaHijos = new ListaConArreglo();
+            this.dato = nombreDato;
+            this.listaHijos = new ListaConArreglo();
         }
     }
 }
