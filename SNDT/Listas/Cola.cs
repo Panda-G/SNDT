@@ -8,7 +8,7 @@ namespace SNDT
         private int cantidadElementos;
         private T anterior;
 
-        public int CantidadElementos { get => cantidadElementos; set => cantidadElementos = value; }
+        public int CantidadElementos { get => this.cantidadElementos; set => this.cantidadElementos = value; }
 
         /* Agrega el objecto de parametro a [datosCola], la lista. 
          * Incrementa en 1 [cantidadElementos]. */
@@ -23,7 +23,7 @@ namespace SNDT
            Decrementa en 1 [cantidadElementos]. */
         public T desencolar()
         {
-            T temp = anterior = this.datosCola[0];
+            T temp = this.anterior = this.datosCola[0];
             this.datosCola.RemoveAt(0);
             CantidadElementos -= 1;
             return temp;

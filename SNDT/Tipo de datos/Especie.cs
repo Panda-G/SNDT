@@ -10,7 +10,6 @@
             Nombre = nombreEspecie;
             this.dato = new DatosEspecie(tipoMetabolismo, tipoReproduccion);
         }
-
     }
     public class DatosEspecie
     {

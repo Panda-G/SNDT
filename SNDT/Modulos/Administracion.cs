@@ -245,9 +245,7 @@ namespace SNDT
             if (entradaDominio.Count() == 7)
             {
                 if (!(entradaDominio.Contains("") || entradaDominio.Contains(" ")))
-                {
                     return true;
-                }
                 Console.WriteLine("Categoria(s) ingresada(s) no validas.");
                 return false;
             }

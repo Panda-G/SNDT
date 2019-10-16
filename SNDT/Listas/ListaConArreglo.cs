@@ -9,23 +9,14 @@ namespace SNDT
         private ArrayList hijos;
         public ArrayList Hijos { get => hijos; }
 
-        public ListaConArreglo()
-        {
-            this.hijos = new ArrayList();
-        }
-        public override ArbolGeneral obtenerElemento(int posicion)
-        {
-            return (ArbolGeneral)Hijos[posicion];
-        }
+        public ListaConArreglo() => this.hijos = new ArrayList();
+        public override ArbolGeneral obtenerElemento(int posicion) => (ArbolGeneral)Hijos[posicion];
         public override void agregarElemento(ArbolGeneral elemento, int posicion)
         {
             if (posicion == Hijos.Count)
                 Hijos.Add(elemento);
         }
-        public override void eliminar(ArbolGeneral elemento)
-        {
-            this.Hijos.Remove(elemento);
-        }
+        public override void eliminar(ArbolGeneral elemento) => this.Hijos.Remove(elemento);
         public override bool esVacia()
         {
             if ((Hijos.Count) == 0)

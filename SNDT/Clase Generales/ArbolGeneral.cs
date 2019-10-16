@@ -12,10 +12,7 @@ namespace SNDT
         public int NivelNodo { get => this.nivelNodo; set => this.nivelNodo = value; }
 
         #region Constructores
-        public ArbolGeneral(string categoria)
-        {
-            this.raiz = new NodoGeneral(new TipoDominio(categoria));
-        }
+        public ArbolGeneral(string categoria) => this.raiz = new NodoGeneral(new TipoDominio(categoria));
         public ArbolGeneral(string categoria, string[] datoEspecie)
         {
             Especie categoriaEspecie = new Especie(categoria, datoEspecie[0], datoEspecie[1]);
@@ -37,15 +34,12 @@ namespace SNDT
                 this.Raiz.ListaHijos.eliminar(hijo);
         }
 
-        public bool esHoja()
-        {
-            return this.Raiz != null && this.Raiz.ListaHijos.tamanioLista == 0;
-        }
+        public bool esHoja() => this.Raiz != null && this.Raiz.ListaHijos.tamanioLista == 0;
 
         //Imprime en pantalla el recorrido Pre-Orden del arbol del que es llamado
         public void recorridoPreOrden()
         {
-            Console.WriteLine(Raiz.Dato.Nombre);
+            Console.WriteLine(this.Raiz.Dato.Nombre);
             if (esHoja())
             {
                 if (this.NivelNodo != 0)
@@ -57,7 +51,7 @@ namespace SNDT
             }
             else
             {
-                Recorredor recorrer = Raiz.ListaHijos.Recorredor;
+                Recorredor recorrer = this.Raiz.ListaHijos.Recorredor;
                 recorrer.comenzar();
                 while (recorrer.esFin() == false)
                 {
